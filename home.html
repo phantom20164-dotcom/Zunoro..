@@ -1,0 +1,7272 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUNORO</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #050505;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding-bottom: 85px;
+    }
+
+    header {
+      height: 65px;
+      padding: 0 17px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #090909;
+      border-bottom: 1px solid #242424;
+    }
+
+    .logo {
+      color: #e5b94f;
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .account {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #d6ad52;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5b94f;
+      font-size: 21px;
+    }
+
+    .search {
+      margin: 15px;
+      padding: 13px 15px;
+      background: #191919;
+      border: 1px solid #303030;
+      border-radius: 25px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      width: 100%;
+      font-size: 15px;
+    }
+
+    .section-title {
+      padding: 10px 16px 14px;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 22px;
+      padding: 0 16px 16px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .tabs .active {
+      color: #e5b94f;
+      border-bottom: 2px solid #e5b94f;
+      padding-bottom: 7px;
+    }
+
+    .video {
+      margin-bottom: 23px;
+      background: #101010;
+      border-bottom: 1px solid #292929;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 45px;
+      position: relative;
+    }
+
+    .video-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play {
+      position: absolute;
+      font-size: 42px;
+      color: white;
+      text-shadow: 0 2px 10px black;
+    }
+
+    .video-info {
+      padding: 13px 15px;
+    }
+
+    .video-info h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .creator {
+      color: #999;
+      font-size: 13px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 5px 3px;
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background: #090909;
+      border-top: 1px solid #292929;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #999;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .nav-item span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .nav-item.active {
+      color: #e5b94f;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">ZUNORO</div>
+    <div class="account">♙</div>
+  </header>
+
+  <div class="search">
+    <span>⌕</span>
+    <input type="search" placeholder="Search videos..." aria-label="Search videos">
+    <button type="button" class="top-search-open" onclick="openZunoroSearch()" aria-label="Open full search">Search</button>
+  </div>
+
+  <div class="tabs">
+    <div class="active">For You</div>
+    <div>Following</div>
+  </div>
+
+  <div class="section-title">Videos</div>
+
+  <div class="video">
+    <div class="video-frame">
+      <span>▶</span>
+    </div>
+    <div class="video-info">
+      <h3>Welcome to ZUNORO</h3>
+      <div class="creator">ZUNORO Creator · Demo Video</div>
+      <div class="actions">
+        <span>♡ Like</span>
+        <span>▢ Comment</span>
+        <span>↗ Share</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="video">
+    <div class="video-frame">
+      <span>▶</span>
+    </div>
+    <div class="video-info">
+      <h3>Discover Amazing Videos</h3>
+      <div class="creator">ZUNORO Creator · Demo Video</div>
+      <div class="actions">
+        <span>♡ Like</span>
+        <span>▢ Comment</span>
+        <span>↗ Share</span>
+      </div>
+    </div>
+  </div>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" type="button" data-nav="home"><span>⌂</span>Home</button>
+    <button class="nav-item" type="button" data-nav="shorts"><span>▶</span>Shorts</button>
+    <button class="nav-item" type="button" data-nav="create"><span>＋</span>Create</button>
+    <button class="nav-item" type="button" data-nav="library"><span>▤</span>Library</button>
+    <button class="nav-item" type="button" data-nav="profile"><span>♙</span>Profile</button>
+  </nav>
+
+<div class="video-frame">
+  <video controls playsinline
+    style="width:100%;height:100%;object-fit:cover;">
+    <source src="assets/video1.mp4" type="video/mp4">
+  </video>
+</div>
+<section style="padding:15px;">
+  <h2 style="color:#e5b94f; margin-bottom:15px;">
+    Shorts
+  </h2>
+
+  <div style="background:#151515; border-radius:12px; overflow:hidden;">
+    <video controls playsinline
+      style="width:100%; max-height:450px; display:block; background:#000;">
+      <source src="assets/short1.mp4" type="video/mp4">
+    </video>
+
+    <div style="padding:12px;">
+      <h3>ZUNORO Short Video</h3>
+      <p style="color:#999; margin-top:6px;">
+        Discover short videos on ZUNORO
+      </p>
+    </div>
+  </div>
+</section>
+<section style="padding:15px; margin-bottom:20px;">
+  <h2 style="color:#e5b94f; margin-bottom:15px;">
+    My Library
+  </h2>
+
+  <div style="background:#151515; padding:18px; border-radius:12px;">
+    <div style="margin-bottom:18px;">
+      ♡ <b>Liked Videos</b>
+      <p style="color:#999;">Your favourite videos</p>
+    </div>
+
+    <div style="margin-bottom:18px;">
+      ◷ <b>Watch History</b>
+      <p style="color:#999;">Recently watched videos</p>
+    </div>
+
+    <div>
+      ▣ <b>Saved Videos</b>
+      <p style="color:#999;">Your saved collection</p>
+    </div>
+  </div>
+</section>
+<section style="padding:15px; margin-bottom:25px;">
+  <h2 style="color:#e5b94f; margin-bottom:15px;">
+    My Account
+  </h2>
+
+  <div style="background:#151515; padding:20px; border-radius:12px; text-align:center;">
+    <div style="font-size:40px; margin-bottom:12px;">👤</div>
+
+    <h3>ZUNORO User</h3>
+
+    <p style="color:#999; margin:7px 0 18px;">
+      Welcome to ZUNORO
+    </p>
+
+    <button style="background:#e5b94f; color:#000; border:0; padding:12px 25px; border-radius:25px;">
+      Edit Profile
+    </button>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.querySelector(".search input");
+  const videos = document.querySelectorAll(".video");
+  if (searchInput) {
+    searchInput.addEventListener("input", function() {
+      const query = searchInput.value.toLowerCase().trim();
+      videos.forEach(function(video) {
+        video.style.display = video.innerText.toLowerCase().includes(query) ? "block" : "none";
+      });
+    });
+  }
+});
+</script>
+
+
+
+<script>
+document.querySelectorAll(".video").forEach(function(video) {
+
+  const actions = video.querySelectorAll(".actions span");
+
+  if (actions.length < 3) return;
+
+  const likeButton = actions[0];
+  const commentButton = actions[1];
+  const shareButton = actions[2];
+
+  let liked = false;
+  let likes = 0;
+
+  likeButton.addEventListener("click", function() {
+    liked = !liked;
+    likes = liked ? 1 : 0;
+
+    likeButton.textContent =
+      liked ? "❤️ Liked (" + likes + ")" : "♡ Like";
+  });
+
+  commentButton.addEventListener("click", function() {
+
+    const message = prompt("अपनी टिप्पणी लिखें:");
+
+    if (message && message.trim() !== "") {
+
+      let commentBox = video.querySelector(".user-comments");
+
+      if (!commentBox) {
+        commentBox = document.createElement("p");
+        commentBox.className = "user-comments";
+        commentBox.style.padding = "10px";
+        commentBox.style.color = "#e5b94f";
+        video.querySelector(".video-info").appendChild(commentBox);
+      }
+
+      commentBox.textContent = "आपकी टिप्पणी: " + message;
+    }
+  });
+
+  shareButton.addEventListener("click", async function() {
+
+    const shareData = {
+      title: "ZUNORO Video",
+      text: "यह वीडियो ZUNORO पर देखें!"
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (error) {
+      }
+    } else {
+      alert("इस डिवाइस पर Share सुविधा उपलब्ध नहीं है।");
+    }
+
+  });
+
+});
+</script>
+
+<script>
+document.querySelectorAll(".video").forEach(function(video) {
+
+  const info = video.querySelector(".video-info");
+
+  if (!info || video.querySelector(".save-button")) return;
+
+  const saveButton = document.createElement("button");
+
+  saveButton.className = "save-button";
+  saveButton.textContent = "🔖 Save";
+
+  saveButton.style.background = "#e5b94f";
+  saveButton.style.color = "#000";
+  saveButton.style.padding = "10px";
+  saveButton.style.margin = "8px";
+  saveButton.style.border = "none";
+  saveButton.style.borderRadius = "8px";
+
+  info.appendChild(saveButton);
+
+  saveButton.addEventListener("click", function() {
+
+    const videoData = {
+      title: video.querySelector("h3")?.textContent || "ZUNORO Video",
+      savedAt: Date.now()
+    };
+
+    let savedVideos = JSON.parse(
+      localStorage.getItem("zunoroLibrary") || "[]"
+    );
+
+    const exists = savedVideos.some(
+      item => item.title === videoData.title
+    );
+
+    if (!exists) {
+      savedVideos.push(videoData);
+      localStorage.setItem(
+        "zunoroLibrary",
+        JSON.stringify(savedVideos)
+      );
+
+      saveButton.textContent = "✓ Saved";
+    } else {
+      alert("यह वीडियो पहले से Library में है।");
+    }
+
+  });
+
+});
+</script>
+
+<script>
+function loadZunoroLibrary() {
+
+  const library = document.querySelector("#library");
+
+  if (!library) return;
+
+  let savedVideos = JSON.parse(
+    localStorage.getItem("zunoroLibrary") || "[]"
+  );
+
+  library.innerHTML = "<h2>📚 My Library</h2>";
+
+  if (savedVideos.length === 0) {
+    library.innerHTML +=
+      "<p>अभी आपकी Library खाली है।</p>";
+    return;
+  }
+
+  savedVideos.forEach(function(video, index) {
+
+    const item = document.createElement("div");
+
+    item.style.padding = "12px";
+    item.style.margin = "10px";
+    item.style.background = "#222";
+    item.style.color = "#e5b94f";
+    item.style.borderRadius = "10px";
+
+    const title = document.createElement("p");
+    title.textContent = video.title;
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+
+    removeButton.onclick = function() {
+
+      savedVideos.splice(index, 1);
+
+      localStorage.setItem(
+        "zunoroLibrary",
+        JSON.stringify(savedVideos)
+      );
+
+      loadZunoroLibrary();
+    };
+
+    item.appendChild(title);
+    item.appendChild(removeButton);
+    library.appendChild(item);
+
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadZunoroLibrary();
+});
+</script>
+<section id="library">
+</section>
+
+<script>
+function loadZunoroProfile() {
+
+  const account = document.querySelector("#account");
+
+  if (!account) return;
+
+  const profile = JSON.parse(
+    localStorage.getItem("zunoroProfile") || "{}"
+  );
+
+  account.innerHTML = `
+    <h2>👤 My Account</h2>
+
+    <div style="padding:15px;color:#e5b94f;">
+
+      <h3>My Profile</h3>
+
+      <input
+        id="profileName"
+        placeholder="Your Name"
+        value="${profile.name || ""}"
+      >
+
+      <br><br>
+
+      <input
+        id="profileUsername"
+        placeholder="Username"
+        value="${profile.username || ""}"
+      >
+
+      <br><br>
+
+      <textarea
+        id="profileBio"
+        placeholder="Write your Bio"
+      >${profile.bio || ""}</textarea>
+
+      <br><br>
+
+      <button onclick="saveZunoroProfile()">
+        Save Profile
+      </button>
+
+      <p id="profileMessage"></p>
+
+    </div>
+  `;
+}
+
+function saveZunoroProfile() {
+
+  const profile = {
+    name: document.querySelector("#profileName").value,
+    username: document.querySelector("#profileUsername").value,
+    bio: document.querySelector("#profileBio").value
+  };
+
+  localStorage.setItem(
+    "zunoroProfile",
+    JSON.stringify(profile)
+  );
+
+  document.querySelector("#profileMessage").textContent =
+    "✓ Profile Saved Successfully!";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadZunoroProfile();
+});
+</script>
+
+<script>
+document.querySelectorAll(".video video").forEach(function(player) {
+
+  // Native video controls
+  player.controls = true;
+
+  // Mobile video support
+  player.playsInline = true;
+
+  // Video loading optimization
+  player.preload = "metadata";
+
+  // Prevent automatic playback
+  player.autoplay = false;
+
+  // Keep video inside its container
+  player.style.maxWidth = "100%";
+  player.style.height = "auto";
+
+  // Stop video when it ends
+  player.addEventListener("ended", function() {
+    player.pause();
+  });
+
+});
+</script>
+<button>Shorts</button>
+<button onclick="openZunoroShorts()">
+  Shorts
+</button>
+
+<script>
+function openZunoroShorts() {
+
+  const shorts = document.getElementById("shorts");
+
+  if (shorts) {
+    shorts.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  } else {
+    alert("ZUNORO Shorts is being prepared!");
+  }
+
+}
+</script>
+<section id="shorts">
+  <button onclick="openZunoroShorts()">
+  Shorts
+</button>
+
+<style>
+#zunoro-shorts-fullscreen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  background: #000;
+  color: white;
+  z-index: 99999;
+}
+
+#zunoro-shorts-fullscreen.active {
+  display: flex;
+  flex-direction: column;
+}
+
+#zunoro-shorts-fullscreen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#zunoro-shorts-close {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  z-index: 2;
+  background: #222;
+  color: white;
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 20px;
+}
+</style>
+
+<div id="zunoro-shorts-fullscreen">
+  <button id="zunoro-shorts-close"
+          onclick="closeZunoroShorts()">✕ Close</button>
+
+  <video id="zunoro-short-video"
+         controls
+         playsinline
+         loop>
+  </video>
+</div>
+
+<script>
+function openZunoroShorts() {
+  const screen = document.getElementById(
+    "zunoro-shorts-fullscreen"
+  );
+
+  screen.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeZunoroShorts() {
+  const screen = document.getElementById(
+    "zunoro-shorts-fullscreen"
+  );
+
+  const video = document.getElementById(
+    "zunoro-short-video"
+  );
+
+  video.pause();
+  screen.classList.remove("active");
+  document.body.style.overflow = "";
+}
+</script>
+
+<div id="zunoro-create" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#000;
+  color:white;
+  padding:20px;
+  overflow:auto;
+">
+
+  <button onclick="closeZunoroCreate()">
+    ✕ Close
+  </button>
+
+  <h2 style="color:#e5b94f;">
+    Create on ZUNORO
+  </h2>
+
+  <h3>Upload Your Video</h3>
+
+  <input
+    type="file"
+    id="zunoroUpload"
+    accept="video/*"
+  >
+
+  <br><br>
+
+  <video
+    id="zunoroPreview"
+    controls
+    playsinline
+    style="width:100%;max-height:400px;display:none;">
+  </video>
+
+  <br><br>
+
+  <input
+    type="text"
+    id="zunoroCaption"
+    placeholder="Write video caption..."
+    style="width:100%;padding:12px;"
+  >
+
+  <br><br>
+
+  <button onclick="previewZunoroUpload()">
+    Preview Video
+  </button>
+
+</div>
+
+<script>
+function openZunoroCreate() {
+  document.getElementById("zunoro-create").style.display =
+    "block";
+}
+
+function closeZunoroCreate() {
+  document.getElementById("zunoro-create").style.display =
+    "none";
+}
+
+function previewZunoroUpload() {
+
+  const file = document.getElementById("zunoroUpload").files[0];
+
+  if (!file) {
+    alert("Please select a video first!");
+    return;
+  }
+
+  const preview = document.getElementById("zunoroPreview");
+
+  if (preview.dataset.objectUrl) {
+    URL.revokeObjectURL(preview.dataset.objectUrl);
+  }
+
+  const videoUrl = URL.createObjectURL(file);
+
+  preview.dataset.objectUrl = videoUrl;
+  preview.src = videoUrl;
+  preview.style.display = "block";
+  preview.play();
+}
+</script>
+<style>
+.zunoro-follow-box {
+  background: #171717;
+  color: white;
+  padding: 15px;
+  margin: 12px;
+  border-radius: 12px;
+}
+
+.zunoro-follow-btn {
+  background: #e5b94f;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+</style>
+
+<div id="zunoro-creators">
+  <h2 style="color:#e5b94f">Creators</h2>
+
+  <div class="zunoro-follow-box">
+    <h3>ZUNORO Creator</h3>
+    <p>Discover amazing videos</p>
+
+    <button
+      class="zunoro-follow-btn"
+      id="zunoro-follow-btn"
+      onclick="toggleZunoroFollow()">
+      Follow
+    </button>
+
+    <p id="zunoro-follow-count">0 Following</p>
+  </div>
+</div>
+
+<script>
+function getZunoroFollowing() {
+  return JSON.parse(
+    localStorage.getItem("zunoroFollowing") || "[]"
+  );
+}
+
+function toggleZunoroFollow() {
+
+  let following = getZunoroFollowing();
+
+  const creator = "zunoro_creator";
+
+  if (following.includes(creator)) {
+    following = following.filter(
+      item => item !== creator
+    );
+  } else {
+    following.push(creator);
+  }
+
+  localStorage.setItem(
+    "zunoroFollowing",
+    JSON.stringify(following)
+  );
+
+  updateZunoroFollow();
+}
+
+function updateZunoroFollow() {
+
+  const following = getZunoroFollowing();
+
+  const isFollowing =
+    following.includes("zunoro_creator");
+
+  document.getElementById(
+    "zunoro-follow-btn"
+  ).textContent = isFollowing ? "Following ✓" : "Follow";
+
+  document.getElementById(
+    "zunoro-follow-count"
+  ).textContent = following.length + " Following";
+}
+
+updateZunoroFollow();
+</script>
+
+<style>
+.zunoro-panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow-y: auto;
+  background: #080808;
+  color: white;
+  padding: 20px;
+}
+
+.zunoro-panel.active {
+  display: block;
+}
+
+.zunoro-panel h2 {
+  color: #e5b94f;
+}
+
+.zunoro-panel button {
+  padding: 10px 16px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 8px;
+  background: #e5b94f;
+  color: #000;
+}
+
+.zunoro-panel .item {
+  background: #202020;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+</style>
+
+<div id="zunoro-notifications" class="zunoro-panel">
+  <button onclick="closeZunoroPanel('zunoro-notifications')">
+    ← Back
+  </button>
+
+  <h2>🔔 Notifications</h2>
+
+  <div id="zunoro-notification-list"></div>
+
+  <button onclick="clearZunoroNotifications()">
+    Clear All
+  </button>
+</div>
+
+<div id="zunoro-settings" class="zunoro-panel">
+  <button onclick="closeZunoroPanel('zunoro-settings')">
+    ← Back
+  </button>
+
+  <h2>⚙️ Settings</h2>
+
+  <div class="item">
+    <h3>Account Settings</h3>
+    <p>Manage your ZUNORO account.</p>
+  </div>
+
+  <div class="item">
+    <h3>Privacy</h3>
+
+    <label>
+      <input type="checkbox" id="zunoro-private">
+      Private Profile
+    </label>
+  </div>
+
+  <div class="item">
+    <h3>Notifications</h3>
+
+    <label>
+      <input type="checkbox" id="zunoro-notification-toggle" checked>
+      Enable Notifications
+    </label>
+  </div>
+
+  <button onclick="saveZunoroSettings()">
+    Save Settings
+  </button>
+
+  <p id="zunoro-settings-message"></p>
+</div>
+
+<script>
+function openZunoroPanel(id) {
+  document.getElementById(id).classList.add("active");
+
+  if (id === "zunoro-notifications") {
+    loadZunoroNotifications();
+  }
+}
+
+function closeZunoroPanel(id) {
+  document.getElementById(id).classList.remove("active");
+}
+
+function getZunoroNotifications() {
+  return JSON.parse(
+    localStorage.getItem("zunoroNotifications") || "[]"
+  );
+}
+
+function addZunoroNotification(message) {
+  const notifications = getZunoroNotifications();
+
+  notifications.unshift({
+    message: message,
+    time: new Date().toLocaleString()
+  });
+
+  localStorage.setItem(
+    "zunoroNotifications",
+    JSON.stringify(notifications)
+  );
+}
+
+function loadZunoroNotifications() {
+  const list = document.getElementById(
+    "zunoro-notification-list"
+  );
+
+  const notifications = getZunoroNotifications();
+
+  list.innerHTML = "";
+
+  if (notifications.length === 0) {
+    list.textContent = "No notifications yet.";
+    return;
+  }
+
+  notifications.forEach(function(item) {
+    const box = document.createElement("div");
+    box.className = "item";
+
+    const message = document.createElement("p");
+    message.textContent = item.message;
+
+    const time = document.createElement("small");
+    time.textContent = item.time;
+
+    box.append(message, time);
+    list.appendChild(box);
+  });
+}
+
+function clearZunoroNotifications() {
+  localStorage.removeItem("zunoroNotifications");
+  loadZunoroNotifications();
+}
+
+function saveZunoroSettings() {
+  localStorage.setItem(
+    "zunoroPrivate",
+    document.getElementById("zunoro-private").checked
+  );
+
+  localStorage.setItem(
+    "zunoroNotificationsEnabled",
+    document.getElementById(
+      "zunoro-notification-toggle"
+    ).checked
+  );
+
+  document.getElementById(
+    "zunoro-settings-message"
+  ).textContent = "✓ Settings saved!";
+}
+
+document.getElementById("zunoro-private").checked =
+  localStorage.getItem("zunoroPrivate") === "true";
+
+document.getElementById(
+  "zunoro-notification-toggle"
+).checked =
+  localStorage.getItem("zunoroNotificationsEnabled") !== "false";
+</script>
+<style>
+#zunoro-explore {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  overflow-y: auto;
+  background: #080808;
+  color: white;
+  padding: 18px;
+}
+
+#zunoro-explore.active {
+  display: block;
+}
+
+.zunoro-category {
+  display: inline-block;
+  background: #242424;
+  color: #e5b94f;
+  padding: 12px 16px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.zunoro-trend {
+  background: #202020;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+}
+</style>
+
+<div id="zunoro-explore">
+
+  <button onclick="closeZunoroExplore()">← Back</button>
+
+  <h2 style="color:#e5b94f;">🔎 Explore ZUNORO</h2>
+
+  <input
+    id="zunoro-explore-search"
+    type="search"
+    placeholder="Search videos and categories..."
+    oninput="searchZunoroExplore()"
+    style="width:100%;padding:14px;border-radius:10px;"
+  >
+
+  <h3>Categories</h3>
+
+  <div id="zunoro-categories">
+    <button class="zunoro-category" onclick="selectZunoroCategory('Music')">🎵 Music</button>
+    <button class="zunoro-category" onclick="selectZunoroCategory('Gaming')">🎮 Gaming</button>
+    <button class="zunoro-category" onclick="selectZunoroCategory('Sports')">⚽ Sports</button>
+    <button class="zunoro-category" onclick="selectZunoroCategory('Comedy')">😂 Comedy</button>
+    <button class="zunoro-category" onclick="selectZunoroCategory('Education')">📚 Education</button>
+    <button class="zunoro-category" onclick="selectZunoroCategory('Technology')">💻 Technology</button>
+    <button class="zunoro-category" onclick="selectZunoroCategory('Travel')">✈️ Travel</button>
+    <button class="zunoro-category" onclick="selectZunoroCategory('News')">📰 News</button>
+  </div>
+
+  <h3>🔥 Trending</h3>
+
+  <div id="zunoro-trending-list">
+    <div class="zunoro-trend" data-category="Music">
+      🎵 Music Videos
+    </div>
+
+    <div class="zunoro-trend" data-category="Gaming">
+      🎮 Gaming Videos
+    </div>
+
+    <div class="zunoro-trend" data-category="Sports">
+      ⚽ Sports Videos
+    </div>
+
+    <div class="zunoro-trend" data-category="Comedy">
+      😂 Comedy Videos
+    </div>
+
+    <div class="zunoro-trend" data-category="Education">
+      📚 Educational Videos
+    </div>
+
+    <div class="zunoro-trend" data-category="Technology">
+      💻 Technology Videos
+    </div>
+
+    <div class="zunoro-trend" data-category="Travel">
+      ✈️ Travel Videos
+    </div>
+
+    <div class="zunoro-trend" data-category="News">
+      📰 News Videos
+    </div>
+  </div>
+
+  <p id="zunoro-explore-message"></p>
+
+</div>
+
+<script>
+function openZunoroExplore() {
+  document.getElementById("zunoro-explore")
+    .classList.add("active");
+}
+
+function closeZunoroExplore() {
+  document.getElementById("zunoro-explore")
+    .classList.remove("active");
+}
+
+function selectZunoroCategory(category) {
+  document.getElementById("zunoro-explore-message")
+    .textContent = "Selected Category: " + category;
+}
+
+function searchZunoroExplore() {
+  const search = document.getElementById(
+    "zunoro-explore-search"
+  ).value.toLowerCase();
+
+  document.querySelectorAll(".zunoro-trend")
+    .forEach(function(item) {
+      item.style.display =
+        item.textContent.toLowerCase().includes(search)
+          ? "block"
+          : "none";
+    });
+}
+</script>
+<style>
+#zunoro-dashboard {
+  background: #111;
+  color: white;
+  padding: 18px;
+  border-radius: 14px;
+  margin: 15px 0;
+}
+#zunoro-dashboard h2 {
+  color: #e5b94f;
+}
+.zd-card {
+  background: #202020;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.zd-button {
+  background: #e5b94f;
+  color: black;
+  border: 0;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+</style>
+
+<section id="zunoro-dashboard" style="display:none;">
+  <h2>Creator Dashboard</h2>
+  <p>Welcome to your ZUNORO creator space!</p>
+
+  <div class="zd-card">
+    <h3>My Creator Account</h3>
+    <p id="zd-name">Creator</p>
+    <p>Manage your creator activity here.</p>
+  </div>
+
+  <div class="zd-card">
+    <h3>My Video Drafts</h3>
+    <p id="zd-draft-count">0 saved drafts</p>
+    <button class="zd-button" onclick="zdShowDrafts()">View Drafts</button>
+    <div id="zd-draft-list"></div>
+  </div>
+
+  <div class="zd-card">
+    <h3>Creator Tools</h3>
+    <button class="zd-button" onclick="openZunoroCreate()">Create Video</button>
+    <button class="zd-button" onclick="openZunoroExplore()">Explore</button>
+  </div>
+
+  <button class="zd-button" onclick="closeZunoroDashboard()">Close Dashboard</button>
+</section>
+
+<script>
+function openZunoroDashboard() {
+  const panel = document.getElementById("zunoro-dashboard");
+  if (panel) {
+    panel.style.display = "block";
+    panel.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const profile = JSON.parse(
+    localStorage.getItem("zunoroProfile") || "{}"
+  );
+
+  document.getElementById("zd-name").textContent =
+    profile.name || "ZUNORO Creator";
+
+  const drafts = JSON.parse(
+    localStorage.getItem("zunoroDrafts") || "[]"
+  );
+
+  document.getElementById("zd-draft-count").textContent =
+    drafts.length + " saved drafts";
+}
+
+function closeZunoroDashboard() {
+  document.getElementById("zunoro-dashboard").style.display = "none";
+}
+
+function zdShowDrafts() {
+  const drafts = JSON.parse(
+    localStorage.getItem("zunoroDrafts") || "[]"
+  );
+
+  const list = document.getElementById("zd-draft-list");
+
+  if (drafts.length === 0) {
+    list.textContent = "Abhi koi saved draft nahi hai.";
+    return;
+  }
+
+  list.innerHTML = "";
+
+  drafts.forEach(function(draft) {
+    const item = document.createElement("p");
+    item.textContent = "• " + draft;
+    list.appendChild(item);
+  });
+}
+</script>
+<!-- ZUNORO STEP 18: CREATOR STUDIO -->
+
+<style>
+#zunoroCreatorBtn {
+  position: fixed;
+  right: 15px;
+  bottom: 85px;
+  z-index: 999;
+  background: #ffd400;
+  color: #000;
+  border: none;
+  border-radius: 25px;
+  padding: 13px 20px;
+  font-weight: bold;
+}
+#zunoroCreatorPanel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #080808;
+  color: white;
+  padding: 22px;
+  overflow-y: auto;
+}
+#zunoroCreatorPanel input,
+#zunoroCreatorPanel textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 13px;
+  background: #202020;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 9px;
+}
+.zc-btn {
+  background: #ffd400;
+  color: black;
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 5px;
+}
+.zc-video {
+  background: #191919;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+.zc-video video {
+  width: 100%;
+  max-height: 220px;
+}
+</style>
+
+<button id="zunoroCreatorBtn"
+onclick="openZunoroCreator()">
+＋ Creator Studio
+</button>
+
+<div id="zunoroCreatorPanel">
+
+  <h2 style="color:#ffd400;">ZUNORO Creator Studio</h2>
+
+  <button class="zc-btn"
+  onclick="closeZunoroCreator()">← Back</button>
+
+  <h3>Upload Your Video</h3>
+
+  <input type="file"
+  id="zcVideoFile"
+  accept="video/*">
+
+  <input type="text"
+  id="zcVideoTitle"
+  placeholder="Enter Video Title">
+
+  <textarea id="zcVideoDescription"
+  placeholder="Write Video Description"
+  rows="4"></textarea>
+
+  <label>Choose Thumbnail</label>
+  <input type="file"
+  id="zcThumbnail"
+  accept="image/*">
+
+  <button class="zc-btn"
+  onclick="saveZunoroVideo()">
+  Upload Video
+  </button>
+
+  <hr>
+
+  <h3>Your Video Library</h3>
+
+  <div id="zcVideoLibrary"></div>
+
+</div>
+
+<script>
+function openZunoroCreator() {
+  document.getElementById(
+    "zunoroCreatorPanel"
+  ).style.display = "block";
+
+  showZunoroVideos();
+}
+
+function closeZunoroCreator() {
+  document.getElementById(
+    "zunoroCreatorPanel"
+  ).style.display = "none";
+}
+
+let zunoroCreatorVideos = [];
+
+function saveZunoroVideo() {
+
+  const file = document.getElementById(
+    "zcVideoFile"
+  ).files[0];
+
+  const title = document.getElementById(
+    "zcVideoTitle"
+  ).value.trim();
+
+  const description = document.getElementById(
+    "zcVideoDescription"
+  ).value.trim();
+
+  const thumbnail = document.getElementById(
+    "zcThumbnail"
+  ).files[0];
+
+  if (!file || !title) {
+    alert("Please select a video and enter a title.");
+    return;
+  }
+
+  const videoURL = URL.createObjectURL(file);
+
+  const thumbnailURL = thumbnail
+    ? URL.createObjectURL(thumbnail)
+    : "";
+
+  zunoroCreatorVideos.push({
+    title: title,
+    description: description,
+    video: videoURL,
+    thumbnail: thumbnailURL
+  });
+
+  showZunoroVideos();
+
+  document.getElementById("zcVideoFile").value = "";
+  document.getElementById("zcVideoTitle").value = "";
+  document.getElementById("zcVideoDescription").value = "";
+  document.getElementById("zcThumbnail").value = "";
+
+  alert("Video added to your Creator Library!");
+}
+
+function showZunoroVideos() {
+
+  const library = document.getElementById(
+    "zcVideoLibrary"
+  );
+
+  library.innerHTML = "";
+
+  zunoroCreatorVideos.forEach((video, index) => {
+
+    const item = document.createElement("div");
+    item.className = "zc-video";
+
+    const heading = document.createElement("h3");
+    heading.textContent = video.title;
+
+    const description = document.createElement("p");
+    description.textContent = video.description;
+
+    const player = document.createElement("video");
+    player.src = video.video;
+    player.controls = true;
+    player.playsInline = true;
+
+    if (video.thumbnail) {
+      player.poster = video.thumbnail;
+    }
+
+    const remove = document.createElement("button");
+    remove.className = "zc-btn";
+    remove.textContent = "Delete Video";
+
+    remove.onclick = function() {
+      URL.revokeObjectURL(
+        zunoroCreatorVideos[index].video
+      );
+
+      if (zunoroCreatorVideos[index].thumbnail) {
+        URL.revokeObjectURL(
+          zunoroCreatorVideos[index].thumbnail
+        );
+      }
+
+      zunoroCreatorVideos.splice(index, 1);
+      showZunoroVideos();
+    };
+
+    item.appendChild(heading);
+    item.appendChild(description);
+    item.appendChild(player);
+    item.appendChild(remove);
+
+    library.appendChild(item);
+  });
+}
+</script>
+
+<!-- END STEP 18 -->
+
+<!-- ZUNORO STEP 19: SHORTS FEED -->
+
+<style>
+#zunoroShorts {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 11000;
+  background: #000;
+  color: white;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.zs-card {
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+  scroll-snap-align: start;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zs-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.zs-top {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 5;
+}
+
+.zs-info {
+  position: absolute;
+  bottom: 55px;
+  left: 15px;
+  z-index: 3;
+}
+
+.zs-actions {
+  position: absolute;
+  right: 15px;
+  bottom: 100px;
+  z-index: 3;
+  display: grid;
+  gap: 22px;
+  text-align: center;
+}
+
+.zs-actions button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.zs-actions small {
+  font-size: 12px;
+}
+
+.zs-close {
+  background: #ffd400;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 18px;
+  font-weight: bold;
+}
+</style>
+
+<button onclick="openZunoroShorts()"
+style="position:fixed;bottom:145px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:20px;padding:12px;">
+▶ Shorts
+</button>
+
+<div id="zunoroShorts">
+
+  <div class="zs-top">
+    <button class="zs-close"
+    onclick="closeZunoroShorts()">← Back</button>
+  </div>
+
+  <div id="zsFeed"></div>
+
+</div>
+
+<script>
+function openZunoroShorts() {
+  document.getElementById(
+    "zunoroShorts"
+  ).style.display = "block";
+
+  loadZunoroShorts();
+}
+
+function closeZunoroShorts() {
+  document.getElementById(
+    "zunoroShorts"
+  ).style.display = "none";
+
+  document.querySelectorAll(
+    "#zsFeed video"
+  ).forEach(v => v.pause());
+}
+
+function loadZunoroShorts() {
+
+  const feed = document.getElementById("zsFeed");
+
+  feed.innerHTML = "";
+
+  if (!window.zunoroShortsList) {
+    window.zunoroShortsList = [];
+  }
+
+  const videos = window.zunoroShortsList;
+
+  if (videos.length === 0) {
+    const empty = document.createElement("div");
+    empty.style.cssText =
+      "height:100dvh;display:grid;place-items:center;text-align:center;padding:25px;";
+    empty.textContent =
+      "No Shorts available yet. Add videos to your Shorts Library.";
+    feed.appendChild(empty);
+    return;
+  }
+
+  videos.forEach((src, index) => {
+
+    const card = document.createElement("div");
+    card.className = "zs-card";
+
+    const video = document.createElement("video");
+    video.src = src;
+    video.loop = true;
+    video.playsInline = true;
+    video.controls = false;
+
+    const info = document.createElement("div");
+    info.className = "zs-info";
+    info.textContent = "ZUNORO • Short Video";
+
+    const actions = document.createElement("div");
+    actions.className = "zs-actions";
+
+    const like = document.createElement("button");
+    like.textContent = "♡";
+
+    const count = document.createElement("small");
+    count.textContent = "Like";
+
+    like.onclick = () => {
+      like.textContent =
+        like.textContent === "♡" ? "❤️" : "♡";
+    };
+
+    const comment = document.createElement("button");
+    comment.textContent = "💬";
+
+    comment.onclick = () => {
+      const message = prompt("Write your comment:");
+      if (message && message.trim()) {
+        alert("Comment added locally!");
+      }
+    };
+
+    const share = document.createElement("button");
+    share.textContent = "↗";
+
+    share.onclick = async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "ZUNORO Short",
+            text: "Watch this video on ZUNORO"
+          });
+        } catch(e) {}
+      } else {
+        alert("Share is not supported on this device.");
+      }
+    };
+
+    actions.appendChild(like);
+    actions.appendChild(count);
+    actions.appendChild(comment);
+    actions.appendChild(share);
+
+    card.appendChild(video);
+    card.appendChild(info);
+    card.appendChild(actions);
+
+    feed.appendChild(card);
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const v = entry.target.querySelector("video");
+
+      if (entry.isIntersecting) {
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.7 });
+
+  feed.querySelectorAll(".zs-card").forEach(card => {
+    observer.observe(card);
+  });
+}
+</script>
+
+<!-- END STEP 19 -->
+
+<!-- ZUNORO STEP 20: SHORTS LIBRARY INTEGRATION -->
+
+<script>
+(function() {
+
+  // Prevent duplicate integration
+  if (window.zunoroStep20Loaded) return;
+  window.zunoroStep20Loaded = true;
+
+  window.zunoroShortsList =
+    window.zunoroShortsList || [];
+
+  const oldSaveZunoroVideo = window.saveZunoroVideo;
+
+  if (typeof oldSaveZunoroVideo !== "function") {
+    console.warn("Creator Studio function not found.");
+    return;
+  }
+
+  window.saveZunoroVideo = function() {
+
+    const file = document.getElementById("zcVideoFile").files[0];
+    const title = document.getElementById("zcVideoTitle").value.trim();
+
+    if (!file || !title) {
+      alert("Please select a video and enter a title.");
+      return;
+    }
+
+    if (file.type.startsWith("video/")) {
+      const videoURL = URL.createObjectURL(file);
+
+      window.zunoroShortsList.push(videoURL);
+    }
+
+    oldSaveZunoroVideo();
+
+  };
+
+})();
+</script>
+
+<!-- END STEP 20 -->
+
+<!-- ZUNORO STEP 21: SHORTS INTERACTIONS -->
+
+<style>
+.zs-extra {
+  color: white;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.zs-extra button {
+  background: #252525;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 18px;
+  padding: 8px 12px;
+  margin: 3px;
+}
+</style>
+
+<script>
+(function() {
+
+  if (window.zunoroStep21Loaded) return;
+  window.zunoroStep21Loaded = true;
+
+  window.zunoroFavorites =
+    window.zunoroFavorites || [];
+
+  window.zunoroViews =
+    window.zunoroViews || {};
+
+  function addShortsFeatures() {
+
+    const cards = document.querySelectorAll(
+      "#zsFeed .zs-card"
+    );
+
+    cards.forEach((card, index) => {
+
+      if (card.dataset.step21) return;
+      card.dataset.step21 = "yes";
+
+      const extra = document.createElement("div");
+      extra.className = "zs-extra";
+
+      const views = document.createElement("p");
+      views.textContent =
+        "Views: " + (window.zunoroViews[index] || 0);
+
+      const favorite = document.createElement("button");
+      favorite.textContent = "☆ Save";
+
+      favorite.onclick = function() {
+
+        const src = window.zunoroShortsList[index];
+
+        if (window.zunoroFavorites.includes(src)) {
+
+          window.zunoroFavorites =
+            window.zunoroFavorites.filter(v => v !== src);
+
+          favorite.textContent = "☆ Save";
+
+        } else {
+
+          window.zunoroFavorites.push(src);
+          favorite.textContent = "★ Saved";
+
+        }
+      };
+
+      extra.appendChild(views);
+      extra.appendChild(favorite);
+
+      const info = card.querySelector(".zs-info");
+      if (info) info.appendChild(extra);
+
+      window.zunoroViews[index] =
+        (window.zunoroViews[index] || 0) + 1;
+
+      views.textContent =
+        "Views: " + window.zunoroViews[index];
+
+    });
+  }
+
+  const originalLoad = window.loadZunoroShorts;
+
+  if (typeof originalLoad === "function") {
+
+    window.loadZunoroShorts = function() {
+      originalLoad();
+      setTimeout(addShortsFeatures, 100);
+    };
+
+  }
+
+})();
+</script>
+
+<!-- END STEP 21 -->
+
+<!-- ZUNORO STEP 22: USER PROFILE -->
+
+<style>
+#zunoroProfilePanel {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:12000;
+  background:#080808;
+  color:white;
+  padding:22px;
+  overflow-y:auto;
+}
+
+.zp-avatar {
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#333;
+  border:3px solid #ffd400;
+}
+
+.zp-input {
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  margin:9px 0;
+  background:#202020;
+  color:white;
+  border:1px solid #444;
+  border-radius:9px;
+}
+
+.zp-button {
+  background:#ffd400;
+  color:black;
+  border:0;
+  border-radius:20px;
+  padding:12px 20px;
+  font-weight:bold;
+  margin:6px 3px;
+}
+
+.zp-box {
+  background:#191919;
+  padding:15px;
+  border-radius:12px;
+  margin:15px 0;
+}
+</style>
+
+<button onclick="openZunoroProfile()"
+style="position:fixed;bottom:205px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:20px;padding:12px;">
+👤 Profile
+</button>
+
+<div id="zunoroProfilePanel">
+
+  <h2 style="color:#ffd400;">ZUNORO PROFILE</h2>
+  <div class="profile-tools" aria-label="Profile tools">
+    <button type="button" onclick="openZunoroSettings()">⚙️ Settings</button>
+    <button type="button" onclick="openZunoroHistory()">🕘 History</button>
+    <button type="button" onclick="openZunoroNotifications()">🔔 Notifications</button>
+    <button type="button" onclick="openZunoroChat()">💬 Messages</button>
+    <button type="button" onclick="openZunoroExplore()">🧭 Explore</button>
+    <button type="button" onclick="openZunoroDiscover()">🔎 Discover</button>
+  </div>
+
+  <button class="zp-button"
+  onclick="closeZunoroProfile()">← Back</button>
+
+  <div class="zp-box" style="text-align:center;">
+
+    <img id="zpAvatar"
+    class="zp-avatar"
+    alt="Profile Picture">
+
+    <h2 id="zpDisplayName">Your Name</h2>
+
+    <p id="zpDisplayUsername">@username</p>
+
+    <p id="zpDisplayBio">Welcome to ZUNORO!</p>
+
+    <p>🎬 Your Creator Profile</p>
+
+  </div>
+
+  <h3>Edit Your Profile</h3>
+
+  <input class="zp-input"
+  id="zpName"
+  placeholder="Full Name">
+
+  <input class="zp-input"
+  id="zpUsername"
+  placeholder="Username">
+
+  <textarea class="zp-input"
+  id="zpBio"
+  placeholder="Write your bio"></textarea>
+
+  <label>Choose Profile Picture</label>
+
+  <input class="zp-input"
+  id="zpPhoto"
+  type="file"
+  accept="image/*">
+
+  <button class="zp-button"
+  onclick="saveZunoroProfile()">
+  Save Profile
+  </button>
+
+  <div class="zp-box">
+    <h3>My Activity</h3>
+    <p id="zpVideoCount">🎬 Videos: 0</p>
+    <p id="zpFavoriteCount">❤️ Saved Shorts: 0</p>
+  </div>
+
+</div>
+
+<script>
+function openZunoroProfile() {
+
+  document.getElementById(
+    "zunoroProfilePanel"
+  ).style.display = "block";
+
+  loadZunoroProfile();
+}
+
+function closeZunoroProfile() {
+
+  document.getElementById(
+    "zunoroProfilePanel"
+  ).style.display = "none";
+}
+
+function loadZunoroProfile() {
+
+  const profile = JSON.parse(
+    localStorage.getItem("zunoroProfile") || "{}"
+  );
+
+  document.getElementById("zpName").value =
+    profile.name || "";
+
+  document.getElementById("zpUsername").value =
+    profile.username || "";
+
+  document.getElementById("zpBio").value =
+    profile.bio || "";
+
+  document.getElementById("zpDisplayName").textContent =
+    profile.name || "Your Name";
+
+  document.getElementById("zpDisplayUsername").textContent =
+    "@" + (profile.username || "username");
+
+  document.getElementById("zpDisplayBio").textContent =
+    profile.bio || "Welcome to ZUNORO!";
+
+  document.getElementById("zpAvatar").src =
+    profile.photo || "";
+
+  document.getElementById("zpVideoCount").textContent =
+    "🎬 Videos: " +
+    (window.zunoroCreatorVideos
+      ? window.zunoroCreatorVideos.length : 0);
+
+  document.getElementById("zpFavoriteCount").textContent =
+    "❤️ Saved Shorts: " +
+    (window.zunoroFavorites
+      ? window.zunoroFavorites.length : 0);
+}
+
+function saveZunoroProfile() {
+
+  const name = document.getElementById(
+    "zpName"
+  ).value.trim();
+
+  const username = document.getElementById(
+    "zpUsername"
+  ).value.trim().replace(/^@/, "");
+
+  const bio = document.getElementById(
+    "zpBio"
+  ).value.trim();
+
+  if (!name || !username) {
+    alert("Please enter your name and username.");
+    return;
+  }
+
+  const oldProfile = JSON.parse(
+    localStorage.getItem("zunoroProfile") || "{}"
+  );
+
+  const photoFile = document.getElementById(
+    "zpPhoto"
+  ).files[0];
+
+  function finishSave(photo) {
+
+    const profile = {
+      name: name,
+      username: username,
+      bio: bio,
+      photo: photo || oldProfile.photo || ""
+    };
+
+    localStorage.setItem(
+      "zunoroProfile",
+      JSON.stringify(profile)
+    );
+
+    loadZunoroProfile();
+
+    alert("ZUNORO Profile Saved Successfully!");
+  }
+
+  if (photoFile) {
+
+    if (!photoFile.type.startsWith("image/")) {
+      alert("Please select a valid image.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function() {
+      finishSave(reader.result);
+    };
+
+    reader.readAsDataURL(photoFile);
+
+  } else {
+    finishSave(oldProfile.photo);
+  }
+}
+</script>
+
+<!-- END STEP 22 -->
+
+<!-- ZUNORO STEP 23: NOTIFICATION SYSTEM -->
+
+<style>
+#zunoroNotificationPanel {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:13000;
+  background:#080808;
+  color:white;
+  padding:20px;
+  overflow-y:auto;
+}
+
+.zn-item {
+  background:#1c1c1c;
+  padding:15px;
+  margin:10px 0;
+  border-radius:10px;
+  border-left:3px solid #ffd400;
+}
+
+.zn-item.unread {
+  background:#292929;
+}
+
+.zn-button {
+  background:#ffd400;
+  color:black;
+  border:0;
+  padding:11px 16px;
+  border-radius:20px;
+  font-weight:bold;
+  margin:5px;
+}
+</style>
+
+<button onclick="openZunoroNotifications()"
+style="position:fixed;bottom:265px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:25px;padding:12px;">
+🔔 <span id="znCount">0</span>
+</button>
+
+<div id="zunoroNotificationPanel">
+
+  <h2 style="color:#ffd400;">Notifications</h2>
+
+  <button class="zn-button"
+  onclick="closeZunoroNotifications()">← Back</button>
+
+  <button class="zn-button"
+  onclick="clearZunoroNotifications()">Clear All</button>
+
+  <div id="znList"></div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep23Loaded) return;
+  window.zunoroStep23Loaded = true;
+
+  window.zunoroNotifications =
+    JSON.parse(
+      localStorage.getItem("zunoroNotifications") || "[]"
+    );
+
+  window.addZunoroNotification = function(message, type) {
+
+    window.zunoroNotifications.unshift({
+      id: Date.now() + Math.random(),
+      message: message,
+      type: type || "general",
+      read: false,
+      time: new Date().toLocaleString()
+    });
+
+    localStorage.setItem(
+      "zunoroNotifications",
+      JSON.stringify(window.zunoroNotifications)
+    );
+
+    showZunoroNotifications();
+  };
+
+  window.openZunoroNotifications = function() {
+
+    document.getElementById(
+      "zunoroNotificationPanel"
+    ).style.display = "block";
+
+    showZunoroNotifications();
+
+    window.zunoroNotifications.forEach(n => {
+      n.read = true;
+    });
+
+    localStorage.setItem(
+      "zunoroNotifications",
+      JSON.stringify(window.zunoroNotifications)
+    );
+
+    showZunoroNotifications();
+  };
+
+  window.closeZunoroNotifications = function() {
+
+    document.getElementById(
+      "zunoroNotificationPanel"
+    ).style.display = "none";
+  };
+
+  window.clearZunoroNotifications = function() {
+
+    if (!confirm("Clear all notifications?")) return;
+
+    window.zunoroNotifications = [];
+
+    localStorage.removeItem("zunoroNotifications");
+
+    showZunoroNotifications();
+  };
+
+  window.showZunoroNotifications = function() {
+
+    const list = document.getElementById("znList");
+
+    const count = window.zunoroNotifications.filter(
+      n => !n.read
+    ).length;
+
+    document.getElementById("znCount").textContent =
+      count;
+
+    list.innerHTML = "";
+
+    if (!window.zunoroNotifications.length) {
+      list.textContent = "No notifications yet.";
+      return;
+    }
+
+    window.zunoroNotifications.forEach(n => {
+
+      const item = document.createElement("div");
+
+      item.className = "zn-item" +
+        (n.read ? "" : " unread");
+
+      const heading = document.createElement("strong");
+      heading.textContent = n.message;
+
+      const time = document.createElement("p");
+      time.textContent = n.time;
+
+      item.appendChild(heading);
+      item.appendChild(time);
+
+      list.appendChild(item);
+    });
+  };
+
+  window.showZunoroNotifications();
+
+})();
+</script>
+
+<!-- END STEP 23 -->
+
+<!-- ZUNORO STEP 24: FOLLOW SYSTEM -->
+
+<style>
+#zunoroFollowPanel {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:14000;
+  background:#080808;
+  color:white;
+  padding:20px;
+  overflow-y:auto;
+}
+.zf-box {
+  background:#1c1c1c;
+  padding:15px;
+  border-radius:12px;
+  margin:12px 0;
+}
+.zf-input {
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  margin:10px 0;
+  background:#222;
+  color:white;
+  border:1px solid #555;
+  border-radius:9px;
+}
+.zf-btn {
+  background:#ffd400;
+  color:black;
+  border:0;
+  padding:11px 17px;
+  border-radius:20px;
+  font-weight:bold;
+  margin:5px;
+}
+.zf-user {
+  background:#252525;
+  padding:12px;
+  margin:8px 0;
+  border-radius:9px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+</style>
+
+<button onclick="openZunoroFollow()"
+style="position:fixed;bottom:325px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+👥 Follow
+</button>
+
+<div id="zunoroFollowPanel">
+
+<h2 style="color:#ffd400;">ZUNORO COMMUNITY</h2>
+
+<button class="zf-btn"
+onclick="closeZunoroFollow()">← Back</button>
+
+<div class="zf-box">
+  <h3>My Social Statistics</h3>
+  <p id="zfFollowers">Followers: 0</p>
+  <p id="zfFollowing">Following: 0</p>
+</div>
+
+<div class="zf-box">
+  <h3>Find Users</h3>
+
+  <input id="zfUsername"
+  class="zf-input"
+  placeholder="Enter username (without @)">
+
+  <button class="zf-btn"
+  onclick="followZunoroUser()">
+  + Follow User
+  </button>
+</div>
+
+<div class="zf-box">
+  <h3>People You Follow</h3>
+  <div id="zfFollowingList"></div>
+</div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep24Loaded) return;
+  window.zunoroStep24Loaded = true;
+
+  const KEY = "zunoroFollowingList";
+
+  function getFollowing() {
+    try {
+      return JSON.parse(localStorage.getItem(KEY) || "[]");
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function saveFollowing(list) {
+    localStorage.setItem(KEY, JSON.stringify(list));
+  }
+
+  window.openZunoroFollow = function() {
+    document.getElementById(
+      "zunoroFollowPanel"
+    ).style.display = "block";
+
+    showZunoroFollowing();
+  };
+
+  window.closeZunoroFollow = function() {
+    document.getElementById(
+      "zunoroFollowPanel"
+    ).style.display = "none";
+  };
+
+  window.followZunoroUser = function() {
+
+    const input = document.getElementById("zfUsername");
+
+    const username = input.value.trim()
+      .replace(/^@/, "")
+      .toLowerCase();
+
+    if (!/^[a-z0-9_.]{3,30}$/.test(username)) {
+      alert("Enter a valid username (3-30 characters).");
+      return;
+    }
+
+    let profile = {};
+
+    try {
+      profile = JSON.parse(
+        localStorage.getItem("zunoroProfile") || "{}"
+      );
+    } catch(e) {}
+
+    if (profile.username &&
+        username === profile.username.toLowerCase()) {
+      alert("You cannot follow yourself!");
+      return;
+    }
+
+    const list = getFollowing();
+
+    if (list.includes(username)) {
+      alert("You already follow this user.");
+      return;
+    }
+
+    list.push(username);
+    saveFollowing(list);
+
+    input.value = "";
+
+    showZunoroFollowing();
+
+    alert("Following @" + username);
+  };
+
+  window.unfollowZunoroUser = function(username) {
+
+    if (!confirm("Unfollow @" + username + "?")) return;
+
+    const list = getFollowing().filter(
+      user => user !== username
+    );
+
+    saveFollowing(list);
+    showZunoroFollowing();
+  };
+
+  window.showZunoroFollowing = function() {
+
+    const list = getFollowing();
+
+    document.getElementById(
+      "zfFollowing"
+    ).textContent = "Following: " + list.length;
+
+    document.getElementById(
+      "zfFollowers"
+    ).textContent = "Followers: 0";
+
+    const container = document.getElementById(
+      "zfFollowingList"
+    );
+
+    container.innerHTML = "";
+
+    if (!list.length) {
+      container.textContent = "You are not following anyone yet.";
+      return;
+    }
+
+    list.forEach(username => {
+
+      const item = document.createElement("div");
+      item.className = "zf-user";
+
+      const name = document.createElement("span");
+      name.textContent = "👤 @" + username;
+
+      const button = document.createElement("button");
+      button.className = "zf-btn";
+      button.textContent = "Unfollow";
+
+      button.onclick = function() {
+        unfollowZunoroUser(username);
+      };
+
+      item.appendChild(name);
+      item.appendChild(button);
+
+      container.appendChild(item);
+    });
+  };
+
+})();
+</script>
+
+<!-- END STEP 24 -->
+
+<!-- ZUNORO STEP 25: DISCOVER PEOPLE -->
+
+<style>
+#zunoroDiscover {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:15000;
+  background:#080808;
+  color:white;
+  padding:20px;
+  overflow-y:auto;
+}
+.zd-search {
+  width:100%;
+  box-sizing:border-box;
+  padding:14px;
+  background:#222;
+  color:white;
+  border:1px solid #555;
+  border-radius:10px;
+  margin:12px 0;
+}
+.zd-user {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#1c1c1c;
+  padding:13px;
+  margin:10px 0;
+  border-radius:10px;
+}
+.zd-btn {
+  background:#ffd400;
+  color:black;
+  border:0;
+  padding:10px 15px;
+  border-radius:20px;
+  font-weight:bold;
+}
+</style>
+
+<button onclick="openZunoroDiscover()"
+style="position:fixed;bottom:385px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+🔍 Discover
+</button>
+
+<div id="zunoroDiscover">
+
+<h2 style="color:#ffd400;">Discover People</h2>
+
+<button class="zd-btn"
+onclick="closeZunoroDiscover()">← Back</button>
+
+<input class="zd-search"
+id="zdSearch"
+placeholder="Search username..."
+oninput="searchZunoroPeople()">
+
+<h3>Suggested Users</h3>
+
+<div id="zdResults"></div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep25Loaded) return;
+  window.zunoroStep25Loaded = true;
+
+  // Demo users until online registration is connected
+  const demoUsers = [
+    "zunoro_creator",
+    "video_star",
+    "music_world",
+    "travel_diary",
+    "tech_zone",
+    "funny_clips",
+    "daily_vlogger",
+    "gaming_hub",
+    "creative_mind",
+    "shorts_world"
+  ];
+
+  window.openZunoroDiscover = function() {
+    document.getElementById(
+      "zunoroDiscover"
+    ).style.display = "block";
+
+    document.getElementById("zdSearch").value = "";
+
+    searchZunoroPeople();
+  };
+
+  window.closeZunoroDiscover = function() {
+    document.getElementById(
+      "zunoroDiscover"
+    ).style.display = "none";
+  };
+
+  window.searchZunoroPeople = function() {
+
+    const query = document.getElementById(
+      "zdSearch"
+    ).value.trim().toLowerCase();
+
+    const results = document.getElementById(
+      "zdResults"
+    );
+
+    results.innerHTML = "";
+
+    let following = [];
+
+    try {
+      following = JSON.parse(
+        localStorage.getItem("zunoroFollowingList") || "[]"
+      );
+    } catch(e) {}
+
+    const matches = demoUsers.filter(user =>
+      user.includes(query)
+    );
+
+    if (!matches.length) {
+      results.textContent = "No users found.";
+      return;
+    }
+
+    matches.forEach(username => {
+
+      const item = document.createElement("div");
+      item.className = "zd-user";
+
+      const name = document.createElement("strong");
+      name.textContent = "👤 @" + username;
+
+      const button = document.createElement("button");
+      button.className = "zd-btn";
+
+      function updateButton() {
+        button.textContent =
+          following.includes(username) ? "Following" : "+ Follow";
+      }
+
+      updateButton();
+
+      button.onclick = function() {
+
+        if (following.includes(username)) {
+          following = following.filter(
+            user => user !== username
+          );
+        } else {
+          following.push(username);
+        }
+
+        localStorage.setItem(
+          "zunoroFollowingList",
+          JSON.stringify(following)
+        );
+
+        updateButton();
+      };
+
+      item.appendChild(name);
+      item.appendChild(button);
+
+      results.appendChild(item);
+    });
+  };
+
+})();
+</script>
+
+<!-- END STEP 25 -->
+
+<!-- ZUNORO STEP 26: DIRECT MESSAGING -->
+
+<style>
+#zunoroChatPanel {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:16000;
+  background:#080808;
+  color:white;
+  padding:15px;
+}
+#zcMessages {
+  height:55vh;
+  overflow-y:auto;
+  padding:10px;
+  background:#151515;
+  border-radius:12px;
+}
+.zc-message {
+  padding:11px;
+  margin:9px 0;
+  border-radius:12px;
+  max-width:80%;
+  background:#292929;
+}
+.zc-message.mine {
+  margin-left:auto;
+  background:#584900;
+}
+.zc-chat-input {
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  margin:8px 0;
+  background:#222;
+  color:white;
+  border:1px solid #555;
+  border-radius:10px;
+}
+.zc-chat-btn {
+  background:#ffd400;
+  color:black;
+  border:0;
+  border-radius:20px;
+  padding:12px 18px;
+  font-weight:bold;
+}
+</style>
+
+<button onclick="openZunoroChat()"
+style="position:fixed;bottom:445px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+💬 Messages
+</button>
+
+<div id="zunoroChatPanel">
+
+<h2 style="color:#ffd400;">ZUNORO MESSAGES</h2>
+
+<button class="zc-chat-btn"
+onclick="closeZunoroChat()">← Back</button>
+
+<input id="zcChatUsername"
+class="zc-chat-input"
+placeholder="Enter username">
+
+<button class="zc-chat-btn"
+onclick="startZunoroChat()">Open Chat</button>
+
+<h3 id="zcChatHeading">Select a conversation</h3>
+
+<div id="zcMessages"></div>
+
+<input id="zcMessageInput"
+class="zc-chat-input"
+placeholder="Write a message...">
+
+<button class="zc-chat-btn"
+onclick="sendZunoroMessage()">Send ➤</button>
+
+<button class="zc-chat-btn"
+onclick="deleteZunoroChat()">Delete Chat</button>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep26Loaded) return;
+  window.zunoroStep26Loaded = true;
+
+  let activeUser = "";
+
+  function getChats() {
+    try {
+      return JSON.parse(
+        localStorage.getItem("zunoroChats") || "{}"
+      );
+    } catch(e) {
+      return {};
+    }
+  }
+
+  function saveChats(chats) {
+    localStorage.setItem(
+      "zunoroChats",
+      JSON.stringify(chats)
+    );
+  }
+
+  window.openZunoroChat = function() {
+    document.getElementById(
+      "zunoroChatPanel"
+    ).style.display = "block";
+  };
+
+  window.closeZunoroChat = function() {
+    document.getElementById(
+      "zunoroChatPanel"
+    ).style.display = "none";
+  };
+
+  window.startZunoroChat = function() {
+
+    const username = document.getElementById(
+      "zcChatUsername"
+    ).value.trim().replace(/^@/, "").toLowerCase();
+
+    if (!/^[a-z0-9_.]{3,30}$/.test(username)) {
+      alert("Enter a valid username.");
+      return;
+    }
+
+    activeUser = username;
+
+    document.getElementById(
+      "zcChatHeading"
+    ).textContent = "Chat with @" + username;
+
+    showZunoroMessages();
+  };
+
+  window.sendZunoroMessage = function() {
+
+    if (!activeUser) {
+      alert("Open a chat first.");
+      return;
+    }
+
+    const input = document.getElementById(
+      "zcMessageInput"
+    );
+
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    const chats = getChats();
+
+    if (!chats[activeUser]) {
+      chats[activeUser] = [];
+    }
+
+    chats[activeUser].push({
+      text: message,
+      time: new Date().toLocaleString(),
+      sender: "me"
+    });
+
+    saveChats(chats);
+
+    input.value = "";
+
+    showZunoroMessages();
+  };
+
+  window.showZunoroMessages = function() {
+
+    const box = document.getElementById("zcMessages");
+
+    box.innerHTML = "";
+
+    if (!activeUser) return;
+
+    const chats = getChats();
+    const messages = chats[activeUser] || [];
+
+    messages.forEach(message => {
+
+      const item = document.createElement("div");
+
+      item.className =
+        "zc-message" +
+        (message.sender === "me" ? " mine" : "");
+
+      const content = document.createElement("div");
+      content.textContent = message.text;
+
+      const time = document.createElement("small");
+      time.textContent = message.time;
+
+      item.appendChild(content);
+      item.appendChild(time);
+
+      box.appendChild(item);
+    });
+
+    box.scrollTop = box.scrollHeight;
+  };
+
+  window.deleteZunoroChat = function() {
+
+    if (!activeUser) return;
+
+    if (!confirm("Delete this chat permanently?")) return;
+
+    const chats = getChats();
+
+    delete chats[activeUser];
+
+    saveChats(chats);
+
+    showZunoroMessages();
+  };
+
+})();
+</script>
+
+<!-- END STEP 26 -->
+
+<!-- ZUNORO STEP 27: COMMENTS AND REPLIES -->
+
+<style>
+#zunoroCommentPanel {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:17000;
+  background:#080808;
+  color:white;
+  padding:18px;
+  overflow-y:auto;
+}
+.zcm-box {
+  background:#1c1c1c;
+  padding:13px;
+  border-radius:12px;
+  margin:10px 0;
+}
+.zcm-input {
+  width:100%;
+  box-sizing:border-box;
+  padding:13px;
+  margin:8px 0;
+  background:#222;
+  color:white;
+  border:1px solid #555;
+  border-radius:9px;
+}
+.zcm-btn {
+  background:#ffd400;
+  color:black;
+  border:0;
+  padding:10px 15px;
+  border-radius:20px;
+  font-weight:bold;
+  margin:4px;
+}
+.zcm-reply {
+  margin-left:20px;
+  border-left:2px solid #ffd400;
+  padding-left:10px;
+}
+</style>
+
+<button onclick="openZunoroComments()"
+style="position:fixed;bottom:505px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+💭 Comments
+</button>
+
+<div id="zunoroCommentPanel">
+
+<h2 style="color:#ffd400;">ZUNORO COMMENTS</h2>
+
+<button class="zcm-btn"
+onclick="closeZunoroComments()">← Back</button>
+
+<input id="zcmVideoID"
+class="zcm-input"
+placeholder="Enter Video ID (example: video1)">
+
+<button class="zcm-btn"
+onclick="selectZunoroCommentVideo()">Open Comments</button>
+
+<div id="zcmActiveVideo"></div>
+
+<input id="zcmInput"
+class="zcm-input"
+placeholder="Write your comment...">
+
+<button class="zcm-btn"
+onclick="addZunoroComment()">Post Comment</button>
+
+<div id="zcmList"></div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep27Loaded) return;
+  window.zunoroStep27Loaded = true;
+
+  let activeVideoID = "";
+  let replyToID = null;
+
+  function getComments() {
+    try {
+      return JSON.parse(
+        localStorage.getItem("zunoroComments") || "{}"
+      );
+    } catch(e) {
+      return {};
+    }
+  }
+
+  function saveComments(data) {
+    localStorage.setItem(
+      "zunoroComments",
+      JSON.stringify(data)
+    );
+  }
+
+  function currentUsername() {
+    try {
+      const profile = JSON.parse(
+        localStorage.getItem("zunoroProfile") || "{}"
+      );
+      return profile.username || "user";
+    } catch(e) {
+      return "user";
+    }
+  }
+
+  window.openZunoroComments = function() {
+    document.getElementById(
+      "zunoroCommentPanel"
+    ).style.display = "block";
+  };
+
+  window.closeZunoroComments = function() {
+    document.getElementById(
+      "zunoroCommentPanel"
+    ).style.display = "none";
+  };
+
+  window.selectZunoroCommentVideo = function() {
+
+    const id = document.getElementById(
+      "zcmVideoID"
+    ).value.trim();
+
+    if (!id) {
+      alert("Enter a Video ID.");
+      return;
+    }
+
+    activeVideoID = id;
+    replyToID = null;
+
+    document.getElementById(
+      "zcmActiveVideo"
+    ).textContent = "Comments for: " + id;
+
+    showZunoroComments();
+  };
+
+  window.addZunoroComment = function() {
+
+    if (!activeVideoID) {
+      alert("Open a video first.");
+      return;
+    }
+
+    const input = document.getElementById("zcmInput");
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    const data = getComments();
+
+    if (!data[activeVideoID]) {
+      data[activeVideoID] = [];
+    }
+
+    data[activeVideoID].push({
+      id: Date.now() + Math.random(),
+      username: currentUsername(),
+      text: text,
+      time: new Date().toLocaleString(),
+      parentID: replyToID,
+      likes: 0
+    });
+
+    saveComments(data);
+
+    input.value = "";
+    replyToID = null;
+
+    showZunoroComments();
+  };
+
+  window.replyZunoroComment = function(id) {
+
+    replyToID = id;
+
+    document.getElementById(
+      "zcmInput"
+    ).placeholder = "Write your reply...";
+
+    document.getElementById("zcmInput").focus();
+  };
+
+  window.likeZunoroComment = function(id) {
+
+    const data = getComments();
+    const comments = data[activeVideoID] || [];
+
+    const comment = comments.find(c => c.id === id);
+
+    if (!comment) return;
+
+    comment.likes++;
+    saveComments(data);
+
+    showZunoroComments();
+  };
+
+  window.deleteZunoroComment = function(id) {
+
+    const data = getComments();
+    const comments = data[activeVideoID] || [];
+
+    const target = comments.find(c => c.id === id);
+
+    if (!target || target.username !== currentUsername()) {
+      alert("You can delete only your own comments.");
+      return;
+    }
+
+    if (!confirm("Delete this comment and its replies?")) return;
+
+    const ids = new Set([id]);
+    let changed = true;
+
+    while (changed) {
+      changed = false;
+      comments.forEach(c => {
+        if (ids.has(c.parentID) && !ids.has(c.id)) {
+          ids.add(c.id);
+          changed = true;
+        }
+      });
+    }
+
+    data[activeVideoID] = comments.filter(
+      c => !ids.has(c.id)
+    );
+
+    saveComments(data);
+    showZunoroComments();
+  };
+
+  window.showZunoroComments = function() {
+
+    const list = document.getElementById("zcmList");
+    list.innerHTML = "";
+
+    const data = getComments();
+    const comments = data[activeVideoID] || [];
+
+    function renderComment(comment, depth) {
+
+      const box = document.createElement("div");
+      box.className = "zcm-box";
+
+      if (depth > 0) {
+        box.classList.add("zcm-reply");
+      }
+
+      const heading = document.createElement("strong");
+      heading.textContent = "@" + comment.username;
+
+      const content = document.createElement("p");
+      content.textContent = comment.text;
+
+      const time = document.createElement("small");
+      time.textContent = comment.time;
+
+      box.appendChild(heading);
+      box.appendChild(content);
+      box.appendChild(time);
+
+      const actions = document.createElement("div");
+
+      const like = document.createElement("button");
+      like.className = "zcm-btn";
+      like.textContent = "❤️ " + comment.likes;
+      like.onclick = () => likeZunoroComment(comment.id);
+
+      const reply = document.createElement("button");
+      reply.className = "zcm-btn";
+      reply.textContent = "↩ Reply";
+      reply.onclick = () => replyZunoroComment(comment.id);
+
+      actions.appendChild(like);
+      actions.appendChild(reply);
+
+      if (comment.username === currentUsername()) {
+        const del = document.createElement("button");
+        del.className = "zcm-btn";
+        del.textContent = "Delete";
+        del.onclick = () => deleteZunoroComment(comment.id);
+        actions.appendChild(del);
+      }
+
+      box.appendChild(actions);
+      list.appendChild(box);
+
+      comments
+        .filter(c => c.parentID === comment.id)
+        .forEach(child => renderComment(child, depth + 1));
+    }
+
+    comments
+      .filter(c => !c.parentID)
+      .forEach(c => renderComment(c, 0));
+
+  };
+
+})();
+</script>
+
+<!-- END STEP 27 -->
+
+<!-- ZUNORO STEP 28: VIDEO CATEGORIES -->
+
+<style>
+#z28CategoryPanel {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:18000;
+  background:#080808;
+  color:white;
+  padding:18px;
+  overflow-y:auto;
+}
+.z28-select {
+  width:100%;
+  padding:13px;
+  margin:10px 0;
+  background:#222;
+  color:white;
+  border:1px solid #555;
+  border-radius:9px;
+}
+.z28-chip {
+  background:#252525;
+  color:white;
+  border:1px solid #555;
+  padding:10px 14px;
+  border-radius:22px;
+  margin:5px;
+}
+.z28-chip.active {
+  background:#ffd400;
+  color:black;
+}
+.z28-card {
+  background:#1c1c1c;
+  padding:14px;
+  border-radius:12px;
+  margin:12px 0;
+}
+.z28-card video {
+  width:100%;
+  max-height:230px;
+}
+.z28-btn {
+  background:#ffd400;
+  color:black;
+  border:0;
+  border-radius:20px;
+  padding:11px 17px;
+  font-weight:bold;
+}
+</style>
+
+<button onclick="openZunoroCategories()"
+style="position:fixed;bottom:565px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+📂 Explore
+</button>
+
+<div id="z28CategoryPanel">
+
+<h2 style="color:#ffd400;">ZUNORO EXPLORE</h2>
+
+<button class="z28-btn"
+onclick="closeZunoroCategories()">← Back</button>
+
+<input id="z28Search"
+class="z28-select"
+placeholder="Search videos or categories..."
+oninput="showZunoroCategoryVideos()">
+
+<h3>Explore Categories</h3>
+
+<div id="z28CategoryButtons"></div>
+
+<h3 id="z28Heading">All Videos</h3>
+
+<div id="z28VideoResults"></div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep28Loaded) return;
+  window.zunoroStep28Loaded = true;
+
+  const categories = [
+    "Entertainment",
+    "Comedy",
+    "Gaming",
+    "Music",
+    "Sports",
+    "Education",
+    "Travel",
+    "Technology"
+  ];
+
+  window.zunoroCategoryVideos = [];
+
+  let selectedCategory = "All";
+
+  // Add category selector to Creator Studio
+  const creator = document.getElementById(
+    "zunoroCreatorPanel"
+  );
+
+  if (creator) {
+
+    const label = document.createElement("h3");
+    label.textContent = "Select Video Category";
+
+    const select = document.createElement("select");
+    select.id = "z28UploadCategory";
+    select.className = "z28-select";
+
+    categories.forEach(category => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      select.appendChild(option);
+    });
+
+    const uploadButton = creator.querySelector(
+      'button[onclick="saveZunoroVideo()"]'
+    );
+
+    if (uploadButton) {
+      creator.insertBefore(label, uploadButton);
+      creator.insertBefore(select, uploadButton);
+    }
+  }
+
+  // Connect category information to uploads
+  if (typeof window.saveZunoroVideo === "function") {
+
+    const originalSave = window.saveZunoroVideo;
+
+    window.saveZunoroVideo = function() {
+
+      const file = document.getElementById(
+        "zcVideoFile"
+      ).files[0];
+
+      const title = document.getElementById(
+        "zcVideoTitle"
+      ).value.trim();
+
+      const category = document.getElementById(
+        "z28UploadCategory"
+      )?.value || "Entertainment";
+
+      if (!file || !title) {
+        return originalSave.apply(this, arguments);
+      }
+
+      if (!file.type.startsWith("video/")) {
+        return originalSave.apply(this, arguments);
+      }
+
+      const record = {
+        title: title,
+        category: category,
+        videoURL: URL.createObjectURL(file),
+        date: new Date().toLocaleString()
+      };
+
+      originalSave.apply(this, arguments);
+
+      window.zunoroCategoryVideos.push(record);
+
+      showZunoroCategoryVideos();
+    };
+  }
+
+  function buildCategoryButtons() {
+
+    const container = document.getElementById(
+      "z28CategoryButtons"
+    );
+
+    container.innerHTML = "";
+
+    ["All", ...categories].forEach(category => {
+
+      const button = document.createElement("button");
+
+      button.className =
+        "z28-chip" +
+        (selectedCategory === category ? " active" : "");
+
+      button.textContent = category;
+
+      button.onclick = function() {
+        selectedCategory = category;
+        buildCategoryButtons();
+        showZunoroCategoryVideos();
+      };
+
+      container.appendChild(button);
+    });
+  }
+
+  window.openZunoroCategories = function() {
+
+    document.getElementById(
+      "z28CategoryPanel"
+    ).style.display = "block";
+
+    buildCategoryButtons();
+    showZunoroCategoryVideos();
+  };
+
+  window.closeZunoroCategories = function() {
+
+    document.getElementById(
+      "z28CategoryPanel"
+    ).style.display = "none";
+  };
+
+  window.showZunoroCategoryVideos = function() {
+
+    const results = document.getElementById(
+      "z28VideoResults"
+    );
+
+    const query = document.getElementById(
+      "z28Search"
+    ).value.trim().toLowerCase();
+
+    results.innerHTML = "";
+
+    const videos = window.zunoroCategoryVideos.filter(video => {
+
+      const categoryMatch =
+        selectedCategory === "All" ||
+        video.category === selectedCategory;
+
+      const searchMatch =
+        video.title.toLowerCase().includes(query) ||
+        video.category.toLowerCase().includes(query);
+
+      return categoryMatch && searchMatch;
+    });
+
+    document.getElementById(
+      "z28Heading"
+    ).textContent = selectedCategory + " Videos";
+
+    if (!videos.length) {
+      results.textContent = "No videos in this category yet.";
+      return;
+    }
+
+    videos.forEach(video => {
+
+      const card = document.createElement("div");
+      card.className = "z28-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = video.title;
+
+      const category = document.createElement("p");
+      category.textContent = "Category: " + video.category;
+
+      const player = document.createElement("video");
+      player.src = video.videoURL;
+      player.controls = true;
+      player.playsInline = true;
+
+      card.appendChild(heading);
+      card.appendChild(category);
+      card.appendChild(player);
+
+      results.appendChild(card);
+    });
+  };
+
+})();
+</script>
+
+<!-- END STEP 28 -->
+
+<!-- ZUNORO STEP 29: WATCH HISTORY -->
+
+<style>
+#z29HistoryPanel {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:19000;
+  background:#080808;
+  color:white;
+  padding:18px;
+  overflow-y:auto;
+}
+.z29-card {
+  background:#1c1c1c;
+  padding:13px;
+  border-radius:12px;
+  margin:12px 0;
+}
+.z29-card video {
+  width:100%;
+  max-height:220px;
+}
+.z29-btn {
+  background:#ffd400;
+  color:black;
+  border:0;
+  border-radius:20px;
+  padding:10px 15px;
+  margin:5px;
+  font-weight:bold;
+}
+</style>
+
+<button onclick="openZunoroHistory()"
+style="position:fixed;bottom:625px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+🕒 History
+</button>
+
+<div id="z29HistoryPanel">
+
+<h2 style="color:#ffd400;">WATCH HISTORY</h2>
+
+<button class="z29-btn"
+onclick="closeZunoroHistory()">← Back</button>
+
+<button class="z29-btn"
+onclick="clearZunoroHistory()">Clear All</button>
+
+<div id="z29HistoryList"></div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep29Loaded) return;
+  window.zunoroStep29Loaded = true;
+
+  const KEY = "zunoroWatchHistory";
+
+  function getHistory() {
+    try {
+      return JSON.parse(localStorage.getItem(KEY) || "[]");
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function saveHistory(history) {
+    localStorage.setItem(KEY, JSON.stringify(history));
+  }
+
+  window.addZunoroWatchHistory = function(video) {
+
+    if (!video || !video.url) return;
+
+    let history = getHistory();
+
+    history = history.filter(
+      item => item.url !== video.url
+    );
+
+    history.unshift({
+      title: video.title || "Untitled Video",
+      url: video.url,
+      position: video.position || 0,
+      watchedAt: new Date().toLocaleString()
+    });
+
+    saveHistory(history.slice(0, 100));
+  };
+
+  // Track videos played in Creator and Explore panels
+  document.addEventListener("play", function(event) {
+
+    const video = event.target;
+
+    if (video.tagName !== "VIDEO") return;
+
+    const card = video.closest(".zc-video, .z28-card");
+
+    if (!card) return;
+
+    const title = card.querySelector("h3")?.textContent
+      || "ZUNORO Video";
+
+    window.addZunoroWatchHistory({
+      title: title,
+      url: video.currentSrc || video.src,
+      position: video.currentTime
+    });
+
+  }, true);
+
+  // Save playback progress
+  document.addEventListener("timeupdate", function(event) {
+
+    const video = event.target;
+
+    if (video.tagName !== "VIDEO" || !video.src) return;
+
+    const card = video.closest(".zc-video, .z28-card");
+
+    if (!card) return;
+
+    const title = card.querySelector("h3")?.textContent
+      || "ZUNORO Video";
+
+    const url = video.currentSrc || video.src;
+
+    const history = getHistory();
+    const item = history.find(v => v.url === url);
+
+    if (item) {
+      item.position = video.currentTime;
+      saveHistory(history);
+    }
+
+  }, true);
+
+  window.openZunoroHistory = function() {
+
+    document.getElementById(
+      "z29HistoryPanel"
+    ).style.display = "block";
+
+    showZunoroHistory();
+  };
+
+  window.closeZunoroHistory = function() {
+
+    document.getElementById(
+      "z29HistoryPanel"
+    ).style.display = "none";
+  };
+
+  window.clearZunoroHistory = function() {
+
+    if (!confirm("Clear all watch history?")) return;
+
+    saveHistory([]);
+    showZunoroHistory();
+  };
+
+  window.removeZunoroHistory = function(url) {
+
+    const history = getHistory().filter(
+      item => item.url !== url
+    );
+
+    saveHistory(history);
+    showZunoroHistory();
+  };
+
+  window.continueZunoroWatching = function(url, position) {
+
+    const history = getHistory();
+    const item = history.find(v => v.url === url);
+
+    if (!item) return;
+
+    const video = document.createElement("video");
+
+    video.src = url;
+    video.controls = true;
+    video.playsInline = true;
+    video.style.cssText =
+      "position:fixed;inset:10%;width:80%;height:70%;z-index:20000;background:black;";
+
+    document.body.appendChild(video);
+
+    video.addEventListener("loadedmetadata", function() {
+      video.currentTime = Math.min(
+        position || 0,
+        video.duration || 0
+      );
+      video.play().catch(() => {});
+    }, {once:true});
+
+    video.addEventListener("ended", function() {
+      video.remove();
+    });
+
+    video.addEventListener("dblclick", function() {
+      video.pause();
+      video.remove();
+    });
+
+  };
+
+  window.showZunoroHistory = function() {
+
+    const list = document.getElementById(
+      "z29HistoryList"
+    );
+
+    list.innerHTML = "";
+
+    const history = getHistory();
+
+    if (!history.length) {
+      list.textContent = "No watch history yet.";
+      return;
+    }
+
+    history.forEach(item => {
+
+      const card = document.createElement("div");
+      card.className = "z29-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = item.title;
+
+      const time = document.createElement("p");
+      time.textContent = "Watched: " + item.watchedAt;
+
+      const progress = document.createElement("p");
+      progress.textContent =
+        "Last position: " +
+        Math.floor(item.position || 0) + " seconds";
+
+      const play = document.createElement("button");
+      play.className = "z29-btn";
+      play.textContent = "▶ Continue Watching";
+
+      play.onclick = () => {
+        continueZunoroWatching(item.url, item.position);
+      };
+
+      const remove = document.createElement("button");
+      remove.className = "z29-btn";
+      remove.textContent = "Remove";
+
+      remove.onclick = () => {
+        removeZunoroHistory(item.url);
+      };
+
+      card.appendChild(heading);
+      card.appendChild(time);
+      card.appendChild(progress);
+      card.appendChild(play);
+      card.appendChild(remove);
+
+      list.appendChild(card);
+    });
+
+  };
+
+})();
+</script>
+
+<!-- END STEP 29 -->
+
+<!-- ZUNORO STEP 30: SETTINGS AND PRIVACY -->
+
+<style>
+#z30Settings {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:21000;
+  background:#080808;
+  color:white;
+  padding:20px;
+  overflow-y:auto;
+}
+.z30-box {
+  background:#1c1c1c;
+  padding:15px;
+  border-radius:12px;
+  margin:12px 0;
+}
+.z30-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #444;
+}
+.z30-button {
+  background:#ffd400;
+  color:black;
+  border:0;
+  padding:12px 18px;
+  border-radius:20px;
+  font-weight:bold;
+}
+.z30-select {
+  background:#222;
+  color:white;
+  padding:9px;
+  border:1px solid #555;
+  border-radius:8px;
+}
+</style>
+
+<button onclick="openZunoroSettings()"
+style="position:fixed;bottom:685px;right:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+⚙️ Settings
+</button>
+
+<div id="z30Settings">
+
+<h2 style="color:#ffd400;">ZUNORO SETTINGS</h2>
+
+<button class="z30-button"
+onclick="closeZunoroSettings()">← Back</button>
+
+<div class="z30-box">
+
+<h3>Appearance</h3>
+
+<div class="z30-row">
+<span>🌙 Dark Mode</span>
+<input type="checkbox" id="z30Dark">
+</div>
+
+<div class="z30-row">
+<span>▶️ Video Auto Play</span>
+<input type="checkbox" id="z30AutoPlay">
+</div>
+
+</div>
+
+<div class="z30-box">
+
+<h3>Privacy & Security</h3>
+
+<div class="z30-row">
+<span>🔒 Private Profile</span>
+<input type="checkbox" id="z30Private">
+</div>
+
+<div class="z30-row">
+<span>💬 Allow Messages</span>
+<input type="checkbox" id="z30Messages">
+</div>
+
+<div class="z30-row">
+<span>🔔 Notifications</span>
+<input type="checkbox" id="z30Notifications">
+</div>
+
+</div>
+
+<div class="z30-box">
+
+<h3>Language</h3>
+
+<select id="z30Language" class="z30-select">
+<option value="English">English</option>
+<option value="Hindi">हिन्दी</option>
+<option value="Spanish">Español</option>
+<option value="French">Français</option>
+</select>
+
+</div>
+
+<div class="z30-box">
+
+<h3>Account</h3>
+
+<button class="z30-button"
+onclick="saveZunoroSettings()">
+Save Settings
+</button>
+
+<button class="z30-button"
+onclick="zunoroDemoLogout()">
+Logout
+</button>
+
+</div>
+
+<p style="color:#999;font-size:12px;">
+ZUNORO Settings • Version 1.0
+</p>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep30Loaded) return;
+  window.zunoroStep30Loaded = true;
+
+  const KEY = "zunoroSettings";
+
+  function defaults() {
+    return {
+      dark: true,
+      autoplay: true,
+      privateProfile: false,
+      messages: true,
+      notifications: true,
+      language: "English"
+    };
+  }
+
+  function getSettings() {
+    try {
+      return {
+        ...defaults(),
+        ...JSON.parse(localStorage.getItem(KEY) || "{}")
+      };
+    } catch(e) {
+      return defaults();
+    }
+  }
+
+  window.openZunoroSettings = function() {
+
+    document.getElementById(
+      "z30Settings"
+    ).style.display = "block";
+
+    const s = getSettings();
+
+    document.getElementById("z30Dark").checked = s.dark;
+    document.getElementById("z30AutoPlay").checked = s.autoplay;
+    document.getElementById("z30Private").checked = s.privateProfile;
+    document.getElementById("z30Messages").checked = s.messages;
+    document.getElementById("z30Notifications").checked = s.notifications;
+    document.getElementById("z30Language").value = s.language;
+  };
+
+  window.closeZunoroSettings = function() {
+    document.getElementById(
+      "z30Settings"
+    ).style.display = "none";
+  };
+
+  window.saveZunoroSettings = function() {
+
+    const s = {
+      dark: document.getElementById("z30Dark").checked,
+      autoplay: document.getElementById("z30AutoPlay").checked,
+      privateProfile: document.getElementById("z30Private").checked,
+      messages: document.getElementById("z30Messages").checked,
+      notifications: document.getElementById("z30Notifications").checked,
+      language: document.getElementById("z30Language").value
+    };
+
+    localStorage.setItem(KEY, JSON.stringify(s));
+
+    alert("Settings saved successfully!");
+
+  };
+
+  window.zunoroDemoLogout = function() {
+
+    if (!confirm("This is a demo logout. Continue?")) return;
+
+    alert("Real account logout will be connected after backend setup.");
+
+  };
+
+})();
+</script>
+
+<!-- END STEP 30 -->
+
+<!-- ZUNORO STEP 31: HOME FEED -->
+
+<style>
+#z31Home {
+  background:#080808;
+  color:white;
+  padding:15px;
+  margin:15px 0 90px;
+  border-radius:15px;
+}
+.z31-tabs {
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding:10px 0;
+}
+.z31-tabs button {
+  background:#242424;
+  color:white;
+  border:1px solid #444;
+  padding:9px 15px;
+  border-radius:20px;
+  white-space:nowrap;
+}
+.z31-tabs button.active {
+  background:#ffd400;
+  color:black;
+}
+.z31-video {
+  background:#1c1c1c;
+  border-radius:13px;
+  padding:12px;
+  margin:14px 0;
+}
+.z31-video video {
+  width:100%;
+  max-height:360px;
+  background:#000;
+  border-radius:10px;
+}
+.z31-video h3 {
+  margin:10px 0 5px;
+}
+.z31-video p {
+  color:#aaa;
+  font-size:13px;
+}
+.z31-empty {
+  text-align:center;
+  color:#aaa;
+  padding:35px 10px;
+}
+</style>
+
+<section id="z31Home">
+
+  <h2 style="color:#ffd400;">🏠 ZUNORO HOME</h2>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <b>Recommended for you</b>
+    <button onclick="refreshZunoroFeed()"
+    style="background:#ffd400;border:0;padding:8px 12px;border-radius:15px;">
+      ↻ Refresh
+    </button>
+  </div>
+
+  <div class="z31-tabs" id="z31Tabs">
+    <button class="active" onclick="filterZunoroFeed('All',this)">All</button>
+    <button onclick="filterZunoroFeed('Trending',this)">🔥 Trending</button>
+    <button onclick="filterZunoroFeed('Music',this)">🎵 Music</button>
+    <button onclick="filterZunoroFeed('Gaming',this)">🎮 Gaming</button>
+    <button onclick="filterZunoroFeed('Entertainment',this)">😂 Entertainment</button>
+    <button onclick="filterZunoroFeed('Education',this)">📚 Education</button>
+  </div>
+
+  <div id="z31Feed">
+    <div class="z31-empty">
+      <h3>Welcome to ZUNORO!</h3>
+      <p>Your video feed will appear here.</p>
+      <p>Upload videos in Creator Studio to get started.</p>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function() {
+
+  if (window.zunoroStep31Loaded) return;
+  window.zunoroStep31Loaded = true;
+
+  let currentCategory = "All";
+
+  function getVideos() {
+    const videos = [];
+
+    if (Array.isArray(window.zunoroCategoryVideos)) {
+      window.zunoroCategoryVideos.forEach(v => {
+        if (v && v.url) videos.push({
+          url: v.url,
+          title: v.title || "ZUNORO Video",
+          category: v.category || "Entertainment"
+        });
+      });
+    }
+
+    if (Array.isArray(window.zunoroCreatorVideos)) {
+      window.zunoroCreatorVideos.forEach(v => {
+        if (!v || !v.url) return;
+
+        const exists = videos.some(x => x.url === v.url);
+
+        if (!exists) videos.push({
+          url: v.url,
+          title: v.title || "ZUNORO Video",
+          category: v.category || "Entertainment"
+        });
+      });
+    }
+
+    return videos;
+  }
+
+  window.filterZunoroFeed = function(category, button) {
+    currentCategory = category;
+
+    document.querySelectorAll("#z31Tabs button")
+      .forEach(b => b.classList.remove("active"));
+
+    if (button) button.classList.add("active");
+
+    renderFeed();
+  };
+
+  function renderFeed() {
+    const feed = document.getElementById("z31Feed");
+    if (!feed) return;
+
+    const videos = getVideos();
+
+    const filtered = currentCategory === "All"
+      ? videos
+      : currentCategory === "Trending"
+        ? videos
+        : videos.filter(v =>
+            v.category.toLowerCase() === currentCategory.toLowerCase()
+          );
+
+    if (!filtered.length) {
+      feed.innerHTML =
+        '<div class="z31-empty"><h3>No videos yet</h3>' +
+        '<p>Upload a video in Creator Studio or choose another category.</p></div>';
+      return;
+    }
+
+    feed.innerHTML = "";
+
+    filtered.slice().reverse().forEach((video, index) => {
+
+      const card = document.createElement("article");
+      card.className = "z31-video";
+
+      const player = document.createElement("video");
+      player.src = video.url;
+      player.controls = true;
+      player.playsInline = true;
+      player.preload = "metadata";
+
+      const heading = document.createElement("h3");
+      heading.textContent = video.title;
+
+      const category = document.createElement("p");
+      category.textContent = "Category: " + video.category;
+
+      card.append(player, heading, category);
+      feed.appendChild(card);
+    });
+  }
+
+  window.refreshZunoroFeed = function() {
+    renderFeed();
+  };
+
+  window.loadZunoroHomeFeed = renderFeed;
+
+  renderFeed();
+
+})();
+</script>
+
+<!-- END STEP 31 -->
+
+<!-- ZUNORO STEP 32: VIDEO WATCH + LIKE + SHARE + SAVE -->
+
+<style>
+#z32Watch {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:22000;
+  overflow-y:auto;
+  background:#080808;
+  color:white;
+  padding:16px;
+}
+.z32-player {
+  width:100%;
+  max-height:65vh;
+  background:black;
+  border-radius:12px;
+}
+.z32-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:15px 0;
+}
+.z32-actions button {
+  background:#242424;
+  color:white;
+  border:1px solid #444;
+  padding:11px 14px;
+  border-radius:22px;
+}
+.z32-actions button.active {
+  background:#ffd400;
+  color:black;
+}
+.z32-close {
+  background:#ffd400;
+  color:black;
+  border:0;
+  border-radius:20px;
+  padding:10px 17px;
+  margin-bottom:15px;
+}
+</style>
+
+<div id="z32Watch">
+
+  <button class="z32-close" onclick="closeZunoroWatch()">
+    ← Back
+  </button>
+
+  <video id="z32Player" class="z32-player"
+    controls playsinline></video>
+
+  <h2 id="z32Title">ZUNORO Video</h2>
+
+  <div class="z32-actions">
+    <button id="z32Like" onclick="toggleZunoroLike()">♡ Like</button>
+    <button id="z32Save" onclick="toggleZunoroSave()">☆ Save</button>
+    <button onclick="shareZunoroVideo()">↗ Share</button>
+    <button onclick="fullscreenZunoroVideo()">⛶ Fullscreen</button>
+  </div>
+
+  <p id="z32Status" style="color:#aaa;">
+    Enjoy watching on ZUNORO!
+  </p>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep32Loaded) return;
+  window.zunoroStep32Loaded = true;
+
+  let activeVideo = null;
+
+  function getList(key) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function saveList(key, list) {
+    localStorage.setItem(key, JSON.stringify(list));
+  }
+
+  function videoId(video) {
+    return video.url;
+  }
+
+  window.openZunoroWatch = function(video) {
+
+    if (!video || !video.url) {
+      alert("Video not available.");
+      return;
+    }
+
+    activeVideo = video;
+
+    const panel = document.getElementById("z32Watch");
+    const player = document.getElementById("z32Player");
+
+    player.pause();
+    player.src = video.url;
+    player.load();
+
+    document.getElementById("z32Title").textContent =
+      video.title || "ZUNORO Video";
+
+    panel.style.display = "block";
+
+    updateButtons();
+  };
+
+  window.closeZunoroWatch = function() {
+    const player = document.getElementById("z32Player");
+    player.pause();
+    player.removeAttribute("src");
+    player.load();
+
+    document.getElementById("z32Watch").style.display = "none";
+    activeVideo = null;
+  };
+
+  function updateButtons() {
+    if (!activeVideo) return;
+
+    const id = videoId(activeVideo);
+    const likes = getList("zunoroLikedVideos");
+    const saved = getList("zunoroSavedVideos");
+
+    const liked = likes.includes(id);
+    const isSaved = saved.some(v => v.url === id);
+
+    document.getElementById("z32Like").textContent =
+      liked ? "♥ Liked" : "♡ Like";
+
+    document.getElementById("z32Like").classList.toggle("active", liked);
+
+    document.getElementById("z32Save").textContent =
+      isSaved ? "★ Saved" : "☆ Save";
+
+    document.getElementById("z32Save").classList.toggle("active", isSaved);
+  }
+
+  window.toggleZunoroLike = function() {
+    if (!activeVideo) return;
+
+    const id = videoId(activeVideo);
+    let likes = getList("zunoroLikedVideos");
+
+    likes = likes.includes(id)
+      ? likes.filter(x => x !== id)
+      : [...likes, id];
+
+    saveList("zunoroLikedVideos", likes);
+    updateButtons();
+  };
+
+  window.toggleZunoroSave = function() {
+    if (!activeVideo) return;
+
+    const id = videoId(activeVideo);
+    let saved = getList("zunoroSavedVideos");
+
+    if (saved.some(v => v.url === id)) {
+      saved = saved.filter(v => v.url !== id);
+    } else {
+      saved.push({
+        url: activeVideo.url,
+        title: activeVideo.title || "ZUNORO Video"
+      });
+    }
+
+    saveList("zunoroSavedVideos", saved);
+    updateButtons();
+  };
+
+  window.shareZunoroVideo = async function() {
+    if (!activeVideo) return;
+
+    const data = {
+      title: activeVideo.title || "ZUNORO Video",
+      text: "Watch this video on ZUNORO!",
+      url: location.href
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(data);
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(
+          data.title + " - " + data.url
+        );
+        alert("Share text copied!");
+      } else {
+        alert("Sharing is not supported on this device.");
+      }
+    } catch(e) {
+      if (e.name !== "AbortError") {
+        alert("Unable to share right now.");
+      }
+    }
+  };
+
+  window.fullscreenZunoroVideo = function() {
+    const player = document.getElementById("z32Player");
+
+    if (player.requestFullscreen) {
+      player.requestFullscreen();
+    } else if (player.webkitEnterFullscreen) {
+      player.webkitEnterFullscreen();
+    }
+  };
+
+  // Add Watch buttons to Home Feed cards.
+  document.addEventListener("click", function(event) {
+    const card = event.target.closest(".z31-video");
+    if (!card || event.target.closest("button")) return;
+
+    const player = card.querySelector("video");
+    const heading = card.querySelector("h3");
+
+    if (!player || !player.src) return;
+
+    window.openZunoroWatch({
+      url: player.src,
+      title: heading ? heading.textContent : "ZUNORO Video"
+    });
+  });
+
+})();
+</script>
+
+<!-- END STEP 32 -->
+
+<!-- ZUNORO STEP 33: SAVED AND LIKED LIBRARY -->
+
+<style>
+#z33Library {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:23000;
+  background:#080808;
+  color:white;
+  padding:18px;
+  overflow-y:auto;
+}
+.z33-btn {
+  background:#ffd400;
+  color:black;
+  border:0;
+  border-radius:20px;
+  padding:10px 15px;
+  font-weight:bold;
+  margin:5px;
+}
+.z33-tab {
+  background:#252525;
+  color:white;
+  border:1px solid #555;
+  padding:10px 15px;
+  border-radius:20px;
+  margin:5px;
+}
+.z33-tab.active {
+  background:#ffd400;
+  color:black;
+}
+.z33-card {
+  background:#1c1c1c;
+  padding:13px;
+  border-radius:12px;
+  margin:12px 0;
+}
+.z33-card button {
+  margin:5px;
+}
+</style>
+
+<button onclick="openZunoroLibrary()"
+style="position:fixed;bottom:12px;left:15px;
+z-index:999;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+⭐ My Library
+</button>
+
+<div id="z33Library">
+
+  <h2 style="color:#ffd400;">⭐ MY LIBRARY</h2>
+
+  <button class="z33-btn" onclick="closeZunoroLibrary()">
+    ← Back
+  </button>
+
+  <div>
+    <button class="z33-tab active"
+    onclick="showZunoroLibraryTab('saved',this)">
+      ⭐ Saved Videos
+    </button>
+
+    <button class="z33-tab"
+    onclick="showZunoroLibraryTab('liked',this)">
+      ❤️ Liked Videos
+    </button>
+  </div>
+
+  <div id="z33Content"></div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep33Loaded) return;
+  window.zunoroStep33Loaded = true;
+
+  let currentTab = "saved";
+
+  function getList(key) {
+    try {
+      const data = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(data) ? data : [];
+    } catch(e) {
+      return [];
+    }
+  }
+
+  window.openZunoroLibrary = function() {
+    document.getElementById("z33Library").style.display = "block";
+    renderLibrary();
+  };
+
+  window.closeZunoroLibrary = function() {
+    document.getElementById("z33Library").style.display = "none";
+  };
+
+  window.showZunoroLibraryTab = function(tab, button) {
+    currentTab = tab;
+
+    document.querySelectorAll(".z33-tab")
+      .forEach(b => b.classList.remove("active"));
+
+    if (button) button.classList.add("active");
+
+    renderLibrary();
+  };
+
+  function renderLibrary() {
+
+    const container = document.getElementById("z33Content");
+    container.innerHTML = "";
+
+    const key = currentTab === "saved"
+      ? "zunoroSavedVideos"
+      : "zunoroLikedVideos";
+
+    const list = getList(key);
+
+    if (!list.length) {
+      container.innerHTML =
+        '<div class="z33-card" style="text-align:center;color:#aaa;">' +
+        '<h3>Your library is empty</h3>' +
+        '<p>Save or like videos to see them here.</p></div>';
+      return;
+    }
+
+    list.forEach((item, index) => {
+
+      const video = typeof item === "string"
+        ? {url:item,title:"ZUNORO Video"}
+        : item;
+
+      const card = document.createElement("div");
+      card.className = "z33-card";
+
+      const title = document.createElement("h3");
+      title.textContent = video.title || "ZUNORO Video";
+
+      const play = document.createElement("button");
+      play.className = "z33-btn";
+      play.textContent = "▶ Play";
+
+      play.onclick = function() {
+        if (!video.url) {
+          alert("Video file is not available.");
+          return;
+        }
+
+        if (typeof window.openZunoroWatch === "function") {
+          window.openZunoroWatch(video);
+        } else {
+          alert("Watch Page is not loaded.");
+        }
+      };
+
+      const remove = document.createElement("button");
+      remove.className = "z33-tab";
+      remove.textContent = "🗑 Remove";
+
+      remove.onclick = function() {
+        const updated = list.filter((_,i) => i !== index);
+        localStorage.setItem(key, JSON.stringify(updated));
+        renderLibrary();
+      };
+
+      card.append(title, play, remove);
+      container.appendChild(card);
+
+    });
+  }
+
+})();
+</script>
+
+<!-- END STEP 33 -->
+
+<!-- ZUNORO STEP 34: SEARCH SYSTEM -->
+
+<style>
+#z34Search {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:24000;
+  background:#080808;
+  color:white;
+  padding:18px;
+  overflow-y:auto;
+}
+.z34-input {
+  width:100%;
+  box-sizing:border-box;
+  padding:14px;
+  border-radius:25px;
+  border:1px solid #555;
+  background:#202020;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+.z34-result {
+  background:#1c1c1c;
+  padding:13px;
+  border-radius:12px;
+  margin:12px 0;
+}
+.z34-result button {
+  background:#ffd400;
+  color:black;
+  border:0;
+  padding:9px 14px;
+  border-radius:18px;
+}
+.z34-chip {
+  background:#252525;
+  color:white;
+  border:1px solid #555;
+  padding:8px 12px;
+  border-radius:18px;
+  margin:4px;
+}
+</style>
+
+<button onclick="openZunoroSearch()"
+style="position:fixed;bottom:12px;right:15px;
+z-index:1000;background:#ffd400;color:black;
+border:0;border-radius:22px;padding:12px;">
+🔎 Search
+</button>
+
+<div id="z34Search">
+
+  <h2 style="color:#ffd400;">🔎 ZUNORO SEARCH</h2>
+
+  <button onclick="closeZunoroSearch()"
+  style="background:#ffd400;border:0;padding:10px 15px;border-radius:20px;">
+    ← Back
+  </button>
+
+  <br><br>
+
+  <input id="z34Input" class="z34-input"
+  type="search" placeholder="Search videos..."
+  oninput="runZunoroSearch()"
+  onkeydown="if(event.key==='Enter') saveZunoroSearchHistory()">
+
+  <h3>Categories</h3>
+
+  <div>
+    <button class="z34-chip" onclick="searchZunoroCategory('Music')">🎵 Music</button>
+    <button class="z34-chip" onclick="searchZunoroCategory('Gaming')">🎮 Gaming</button>
+    <button class="z34-chip" onclick="searchZunoroCategory('Education')">📚 Education</button>
+    <button class="z34-chip" onclick="searchZunoroCategory('Entertainment')">😂 Entertainment</button>
+  </div>
+
+  <h3>Recent Searches</h3>
+
+  <div id="z34History"></div>
+
+  <button onclick="clearZunoroSearchHistory()"
+  class="z34-chip">
+    🗑 Clear History
+  </button>
+
+  <h3>Search Results</h3>
+
+  <div id="z34Results">
+    <p style="color:#aaa;">Start searching for videos.</p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+
+  if (window.zunoroStep34Loaded) return;
+  window.zunoroStep34Loaded = true;
+
+  function getVideos() {
+    const videos = [];
+
+    if (Array.isArray(window.zunoroCategoryVideos)) {
+      window.zunoroCategoryVideos.forEach(v => {
+        if (v && v.url) videos.push(v);
+      });
+    }
+
+    if (Array.isArray(window.zunoroCreatorVideos)) {
+      window.zunoroCreatorVideos.forEach(v => {
+        if (!v || !v.url) return;
+
+        if (!videos.some(x => x.url === v.url)) {
+          videos.push(v);
+        }
+      });
+    }
+
+    return videos;
+  }
+
+  function getHistory() {
+    try {
+      return JSON.parse(localStorage.getItem("zunoroSearchHistory") || "[]");
+    } catch(e) {
+      return [];
+    }
+  }
+
+  window.openZunoroSearch = function() {
+    document.getElementById("z34Search").style.display = "block";
+    renderZunoroHistory();
+    document.getElementById("z34Input").focus();
+  };
+
+  window.closeZunoroSearch = function() {
+    document.getElementById("z34Search").style.display = "none";
+  };
+
+  window.runZunoroSearch = function() {
+
+    const query = document.getElementById("z34Input")
+      .value.trim().toLowerCase();
+
+    const results = document.getElementById("z34Results");
+    results.innerHTML = "";
+
+    if (!query) {
+      results.innerHTML = '<p style="color:#aaa;">Start searching for videos.</p>';
+      return;
+    }
+
+    const matches = getVideos().filter(v => {
+      const title = (v.title || "").toLowerCase();
+      const category = (v.category || "").toLowerCase();
+
+      return title.includes(query) || category.includes(query);
+    });
+
+    if (!matches.length) {
+      results.innerHTML = '<p style="color:#aaa;">No videos found.</p>';
+      return;
+    }
+
+    matches.forEach(video => {
+
+      const card = document.createElement("div");
+      card.className = "z34-result";
+
+      const title = document.createElement("h3");
+      title.textContent = video.title || "ZUNORO Video";
+
+      const category = document.createElement("p");
+      category.textContent = "Category: " + (video.category || "General");
+
+      const play = document.createElement("button");
+      play.textContent = "▶ Watch";
+
+      play.onclick = function() {
+        if (typeof window.openZunoroWatch === "function") {
+          window.openZunoroWatch(video);
+        } else {
+          alert("Watch page is not available.");
+        }
+      };
+
+      card.append(title, category, play);
+      results.appendChild(card);
+
+    });
+  };
+
+  window.searchZunoroCategory = function(category) {
+    document.getElementById("z34Input").value = category;
+    saveZunoroSearchHistory(category);
+    runZunoroSearch();
+  };
+
+  window.saveZunoroSearchHistory = function(value) {
+
+    const query = (value ||
+      document.getElementById("z34Input").value).trim();
+
+    if (!query) return;
+
+    let history = getHistory();
+
+    history = [query, ...history.filter(
+      x => x.toLowerCase() !== query.toLowerCase()
+    )].slice(0,10);
+
+    localStorage.setItem(
+      "zunoroSearchHistory",
+      JSON.stringify(history)
+    );
+
+    renderZunoroHistory();
+  };
+
+  function renderZunoroHistory() {
+
+    const box = document.getElementById("z34History");
+    box.innerHTML = "";
+
+    getHistory().forEach(query => {
+
+      const button = document.createElement("button");
+      button.className = "z34-chip";
+      button.textContent = query;
+
+      button.onclick = function() {
+        document.getElementById("z34Input").value = query;
+        runZunoroSearch();
+      };
+
+      box.appendChild(button);
+
+    });
+  }
+
+  window.clearZunoroSearchHistory = function() {
+    if (!confirm("Clear all recent searches?")) return;
+
+    localStorage.removeItem("zunoroSearchHistory");
+    renderZunoroHistory();
+  };
+
+})();
+</script>
+
+<!-- END STEP 34 -->
+
+<style id="zunoro-ui-cleanup">
+  html { scroll-behavior: smooth; }
+  body { padding-bottom: calc(82px + env(safe-area-inset-bottom)); overflow-x: hidden; }
+  .bottom-nav { height: calc(68px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); z-index: 30000; }
+  .nav-item { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; color: #aaa; padding: 7px 2px; }
+  .nav-item span { font-size: 21px; }
+  .nav-item.active { color: #ffd400; }
+  /* Remove scattered fixed shortcut launchers; the same tools are available inside Profile. */
+  button[style*="position:fixed"], button[style*="position: fixed"], #zunoroCreatorBtn { display: none !important; }
+  .top-search-open { border: 0; border-radius: 18px; background: #ffd400; color: #080808; padding: 8px 12px; font-weight: 700; white-space: nowrap; }
+  .search { gap: 8px; }
+  .profile-tools { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; margin: 14px 0; }
+  .profile-tools button { border: 0; border-radius: 12px; padding: 12px 9px; background: #242424; color: #ffd400; font-weight: 600; }
+  #zunoroProfilePanel { padding-bottom: 90px; }
+  @media (max-width: 380px) { .nav-item { font-size: 10px; } .nav-item span { font-size: 19px; } }
+</style>
+<script id="zunoro-main-navigation">
+document.addEventListener("DOMContentLoaded", function () {
+  const items = document.querySelectorAll(".bottom-nav .nav-item");
+  items.forEach(function(item) {
+    item.addEventListener("click", function() {
+      items.forEach(function(nav) { nav.classList.remove("active"); });
+      item.classList.add("active");
+      const target = item.dataset.nav;
+      if (target === "home") { window.scrollTo({top: 0, behavior: "smooth"}); }
+      if (target === "shorts") { if (typeof window.openZunoroShorts === "function") window.openZunoroShorts(); else document.getElementById("shorts")?.scrollIntoView({behavior:"smooth"}); }
+      if (target === "create") { if (typeof window.openZunoroCreate === "function") window.openZunoroCreate(); }
+      if (target === "library") { if (typeof window.openZunoroLibrary === "function") window.openZunoroLibrary(); }
+      if (target === "profile") { if (typeof window.openZunoroProfile === "function") window.openZunoroProfile(); }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
+
+<!-- ZUNORO LIKE & COMMENT SYSTEM -->
+<style>
+.zn-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 12px 0;
+}
+.zn-btn {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 17px;
+  cursor: pointer;
+}
+.zn-liked {
+  color: #ff3155 !important;
+}
+.zn-comments {
+  margin-top: 10px;
+}
+.zn-comment-list {
+  font-size: 14px;
+  margin: 8px 0;
+}
+.zn-comment-input {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.zn-comment-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #aaa;
+  background: transparent;
+  color: inherit;
+}
+.zn-comment-input button {
+  border: none;
+  border-radius: 20px;
+  padding: 8px 14px;
+  background: #6555ff;
+  color: white;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll(
+    ".post, .post-card, .feed-post"
+  ).forEach(function(post) {
+
+    if (post.dataset.znReady) return;
+    post.dataset.znReady = "true";
+
+    const actions = document.createElement("div");
+    actions.className = "zn-actions";
+
+    const like = document.createElement("button");
+    like.className = "zn-btn";
+    like.innerHTML = "♡ <span>0</span>";
+
+    const comment = document.createElement("button");
+    comment.className = "zn-btn";
+    comment.innerHTML = "💬 Comment";
+
+    actions.append(like, comment);
+
+    const area = document.createElement("div");
+    area.className = "zn-comments";
+    area.hidden = true;
+
+    const list = document.createElement("div");
+    list.className = "zn-comment-list";
+
+    const inputArea = document.createElement("div");
+    inputArea.className = "zn-comment-input";
+
+    const input = document.createElement("input");
+    input.placeholder = "Write a comment...";
+
+    const send = document.createElement("button");
+    send.textContent = "Send";
+
+    inputArea.append(input, send);
+    area.append(list, inputArea);
+
+    post.append(actions, area);
+
+    let liked = false;
+    let count = 0;
+
+    like.onclick = function() {
+      liked = !liked;
+      count += liked ? 1 : -1;
+      like.classList.toggle("zn-liked", liked);
+      like.innerHTML =
+        (liked ? "♥ " : "♡ ") + "<span>" + count + "</span>";
+    };
+
+    comment.onclick = function() {
+      area.hidden = !area.hidden;
+    };
+
+    function addComment() {
+      const value = input.value.trim();
+      if (!value) return;
+
+      const item = document.createElement("p");
+      item.textContent = value;
+      list.appendChild(item);
+      input.value = "";
+    }
+
+    send.onclick = addComment;
+
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") addComment();
+    });
+
+  });
+
+});
+</script>
+
+<!-- ZUNORO SHARE SYSTEM -->
+<style>
+.zn-share-btn {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 16px;
+  padding: 8px;
+  cursor: pointer;
+}
+.zn-share-message {
+  font-size: 13px;
+  color: #16a36a;
+  margin-top: 5px;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  document.querySelectorAll(
+    ".post, .post-card, .feed-post"
+  ).forEach(function(post) {
+
+    if (post.querySelector(".zn-share-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "zn-share-btn";
+    btn.textContent = "↗ Share";
+
+    const message = document.createElement("div");
+    message.className = "zn-share-message";
+
+    btn.onclick = async function() {
+
+      const shareData = {
+        title: "ZUNORO Post",
+        text: "Check out this post on ZUNORO!",
+        url: location.href
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else if (navigator.clipboard) {
+          await navigator.clipboard.writeText(location.href);
+          message.textContent = "Link copied!";
+        } else {
+          message.textContent = "Sharing is unavailable.";
+        }
+      } catch(error) {
+        if (error.name !== "AbortError") {
+          message.textContent = "Unable to share right now.";
+        }
+      }
+    };
+
+    post.append(btn, message);
+  });
+
+});
+</script>
+
+<!-- ZUNORO SEARCH SYSTEM -->
+
+<style>
+.zn-search-box {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #888;
+  border-radius: 12px;
+  box-sizing: border-box;
+  background: transparent;
+  color: inherit;
+  margin: 10px 0;
+}
+.zn-search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.zn-search-result {
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(120,120,120,.12);
+}
+.zn-hidden {
+  display: none !important;
+}
+</style>
+
+<div id="zn-search-section">
+  <input
+    type="search"
+    id="zn-search-input"
+    class="zn-search-box"
+    placeholder="Search posts and users..."
+  >
+  <div id="zn-search-results"
+       class="zn-search-results"></div>
+</div>
+
+<script>
+(function() {
+  const input = document.getElementById("zn-search-input");
+  const results = document.getElementById("zn-search-results");
+
+  if (!input || !results) return;
+
+  input.addEventListener("input", function() {
+    const query = input.value.trim().toLowerCase();
+    results.innerHTML = "";
+
+    if (!query) return;
+
+    const items = document.querySelectorAll(
+      ".post, .post-card, .feed-post, .profile-card, .user-card"
+    );
+
+    let found = 0;
+
+    items.forEach(function(item) {
+      const text = item.innerText.toLowerCase();
+
+      if (text.includes(query)) {
+        const result = document.createElement("div");
+        result.className = "zn-search-result";
+        result.textContent = item.innerText.slice(0, 180);
+        result.onclick = function() {
+          item.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        };
+        results.appendChild(result);
+        found++;
+      }
+    });
+
+    if (!found) {
+      results.textContent = "No results found.";
+    }
+  });
+})();
+</script>
+
+<!-- ZUNORO PROFILE SYSTEM -->
+
+<style>
+.zn-profile {
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  background: rgba(120,120,120,.10);
+  color: inherit;
+}
+.zn-avatar {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #777;
+}
+.zn-profile input,
+.zn-profile textarea {
+  width: 100%;
+  padding: 11px;
+  margin: 7px 0;
+  border-radius: 9px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  background: transparent;
+  color: inherit;
+}
+.zn-profile button {
+  padding: 10px 18px;
+  margin: 7px;
+  border: none;
+  border-radius: 20px;
+  background: #6555ff;
+  color: white;
+  cursor: pointer;
+}
+</style>
+
+<section class="zn-profile">
+  <img id="zn-avatar" class="zn-avatar"
+  src="https://placehold.co/200x200"
+  alt="Profile photo">
+
+  <h2 id="zn-name">ZUNORO User</h2>
+  <p id="zn-bio">Welcome to my profile!</p>
+
+  <p>Posts: <span id="zn-post-count">0</span></p>
+
+  <button onclick="znEditProfile()">Edit Profile</button>
+
+  <div id="zn-editor" hidden>
+    <input id="zn-new-name" placeholder="Username">
+    <textarea id="zn-new-bio"
+    placeholder="Write your bio"></textarea>
+
+    <input type="file" id="zn-new-photo"
+    accept="image/*">
+
+    <button onclick="znSaveProfile()">Save</button>
+    <button onclick="document.getElementById('zn-editor').hidden=true">
+      Cancel
+    </button>
+  </div>
+</section>
+
+<script>
+function znEditProfile() {
+  document.getElementById("zn-editor").hidden = false;
+  document.getElementById("zn-new-name").value =
+    document.getElementById("zn-name").textContent;
+  document.getElementById("zn-new-bio").value =
+    document.getElementById("zn-bio").textContent;
+}
+
+function znSaveProfile() {
+  const name = document.getElementById("zn-new-name").value.trim();
+  const bio = document.getElementById("zn-new-bio").value.trim();
+
+  if (!name) {
+    alert("Enter a username!");
+    return;
+  }
+
+  document.getElementById("zn-name").textContent = name;
+  document.getElementById("zn-bio").textContent = bio;
+
+  const photo = document.getElementById("zn-new-photo").files[0];
+
+  if (photo) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById("zn-avatar").src = e.target.result;
+    };
+    reader.readAsDataURL(photo);
+  }
+
+  document.getElementById("zn-editor").hidden = true;
+  alert("Profile updated!");
+}
+</script>
+
+<!-- ZUNORO FOLLOW SYSTEM -->
+
+<style>
+.zn-follow-btn {
+  padding: 9px 22px;
+  border: none;
+  border-radius: 20px;
+  background: #6555ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.zn-follow-btn.following {
+  background: #777;
+}
+.zn-follow-count {
+  font-size: 14px;
+  margin: 8px 0;
+}
+</style>
+
+<div class="zn-follow-demo">
+  <h3>Community</h3>
+  <p class="zn-follow-count">
+    Following: <span id="zn-follow-count">0</span>
+  </p>
+  <button class="zn-follow-btn"
+          id="zn-follow-btn">
+    Follow
+  </button>
+</div>
+
+<script>
+(function() {
+  const btn = document.getElementById("zn-follow-btn");
+  const count = document.getElementById("zn-follow-count");
+
+  if (!btn || btn.dataset.ready) return;
+  btn.dataset.ready = "true";
+
+  let following = false;
+  let total = 0;
+
+  btn.addEventListener("click", function() {
+    following = !following;
+    total = following ? 1 : 0;
+
+    btn.textContent = following ? "Following" : "Follow";
+    btn.classList.toggle("following", following);
+    count.textContent = total;
+  });
+})();
+</script>
+
+<!-- ZUNORO NOTIFICATION SYSTEM -->
+
+<style>
+.zn-notification-panel {
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(120,120,120,.12);
+  color: inherit;
+}
+.zn-notification-item {
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  background: rgba(120,120,120,.12);
+}
+.zn-notification-item.unread {
+  border-left: 4px solid #6555ff;
+}
+.zn-notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.zn-notification-panel button {
+  padding: 8px 13px;
+  border: none;
+  border-radius: 18px;
+  background: #6555ff;
+  color: white;
+}
+</style>
+
+<section class="zn-notification-panel">
+  <div class="zn-notification-header">
+    <h3>🔔 Notifications
+      <span id="zn-notification-count">0</span>
+    </h3>
+    <button onclick="znClearNotifications()">Clear</button>
+  </div>
+
+  <div id="zn-notification-list">
+    <p>No notifications yet.</p>
+  </div>
+</section>
+
+<script>
+(function() {
+  let notifications = [];
+
+  window.znAddNotification = function(message) {
+    notifications.unshift({
+      message: message,
+      read: false
+    });
+    znRenderNotifications();
+  };
+
+  window.znRenderNotifications = function() {
+    const list = document.getElementById(
+      "zn-notification-list"
+    );
+    const count = document.getElementById(
+      "zn-notification-count"
+    );
+
+    if (!list || !count) return;
+
+    const unread = notifications.filter(n => !n.read).length;
+    count.textContent = unread;
+    list.innerHTML = "";
+
+    if (!notifications.length) {
+      list.textContent = "No notifications yet.";
+      return;
+    }
+
+    notifications.forEach(function(n) {
+      const item = document.createElement("div");
+      item.className = "zn-notification-item" +
+        (n.read ? "" : " unread");
+
+      item.textContent = n.message;
+
+      item.onclick = function() {
+        n.read = true;
+        znRenderNotifications();
+      };
+
+      list.appendChild(item);
+    });
+  };
+
+  window.znClearNotifications = function() {
+    notifications = [];
+    znRenderNotifications();
+  };
+
+  znRenderNotifications();
+
+  // Demo notification
+  window.znAddNotification("Welcome to ZUNORO!");
+})();
+</script>
+
+<!-- ZUNORO SETTINGS & PRIVACY -->
+
+<style>
+.zn-settings {
+  padding: 18px;
+  border-radius: 15px;
+  background: rgba(120,120,120,.10);
+  color: inherit;
+}
+.zn-setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 4px;
+  border-bottom: 1px solid rgba(128,128,128,.3);
+}
+.zn-settings button {
+  border: 0;
+  border-radius: 20px;
+  padding: 9px 17px;
+  background: #6555ff;
+  color: white;
+}
+</style>
+
+<section class="zn-settings">
+  <h2>⚙️ Settings & Privacy</h2>
+
+  <div class="zn-setting-row">
+    <span>Dark Mode</span>
+    <input type="checkbox" id="zn-dark-mode">
+  </div>
+
+  <div class="zn-setting-row">
+    <span>Private Account</span>
+    <input type="checkbox" id="zn-private">
+  </div>
+
+  <div class="zn-setting-row">
+    <span>Notifications</span>
+    <input type="checkbox" id="zn-notifications" checked>
+  </div>
+
+  <div class="zn-setting-row">
+    <span>Account Information</span>
+    <button onclick="alert('Account settings coming soon!')">
+      View
+    </button>
+  </div>
+
+  <div class="zn-setting-row">
+    <span>Logout</span>
+    <button onclick="znLogout()">Logout</button>
+  </div>
+</section>
+
+<script>
+(function() {
+  const dark = document.getElementById("zn-dark-mode");
+  const privacy = document.getElementById("zn-private");
+  const notify = document.getElementById("zn-notifications");
+
+  if (!dark || dark.dataset.ready) return;
+  dark.dataset.ready = "true";
+
+  dark.checked = localStorage.getItem("zn-dark") === "true";
+  privacy.checked = localStorage.getItem("zn-private") === "true";
+  notify.checked = localStorage.getItem("zn-notify") !== "false";
+
+  function applyTheme() {
+    document.body.classList.toggle("zn-dark-theme", dark.checked);
+    localStorage.setItem("zn-dark", dark.checked);
+  }
+
+  dark.addEventListener("change", applyTheme);
+  applyTheme();
+
+  privacy.addEventListener("change", function() {
+    localStorage.setItem("zn-private", privacy.checked);
+  });
+
+  notify.addEventListener("change", function() {
+    localStorage.setItem("zn-notify", notify.checked);
+  });
+
+  window.znLogout = function() {
+    if (confirm("Are you sure you want to logout?")) {
+      alert("Login system will be connected later.");
+    }
+  };
+})();
+</script>
+
+<style>
+body.zn-dark-theme {
+  background: #111 !important;
+  color: #fff !important;
+}
+</style>
+
+<!-- ZUNORO LOGIN & SIGNUP -->
+
+<style>
+.zn-auth {
+  max-width: 420px;
+  margin: 25px auto;
+  padding: 24px;
+  border-radius: 18px;
+  background: #171724;
+  color: white;
+  text-align: center;
+}
+.zn-auth input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #555;
+  background: #252535;
+  color: white;
+}
+.zn-auth button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #6555ff;
+  color: white;
+  font-weight: bold;
+}
+.zn-auth .zn-switch {
+  background: transparent;
+  color: #aaa;
+}
+</style>
+
+<section class="zn-auth" id="zn-auth">
+  <h2 id="zn-auth-title">Welcome to ZUNORO</h2>
+  <p id="zn-auth-subtitle">Login to continue</p>
+
+  <form id="zn-auth-form">
+    <input id="zn-auth-name"
+      placeholder="Your Name"
+      autocomplete="name"
+      hidden>
+
+    <input id="zn-auth-email"
+      type="email"
+      placeholder="Email Address"
+      autocomplete="email"
+      required>
+
+    <input id="zn-auth-password"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+      minlength="6"
+      required>
+
+    <button type="submit" id="zn-auth-submit">
+      Login
+    </button>
+  </form>
+
+  <button class="zn-switch" id="zn-auth-switch">
+    Create New Account
+  </button>
+
+  <p id="zn-auth-message" aria-live="polite"></p>
+</section>
+
+<script>
+(function() {
+  const form = document.getElementById("zn-auth-form");
+  const name = document.getElementById("zn-auth-name");
+  const email = document.getElementById("zn-auth-email");
+  const password = document.getElementById("zn-auth-password");
+  const title = document.getElementById("zn-auth-title");
+  const subtitle = document.getElementById("zn-auth-subtitle");
+  const submit = document.getElementById("zn-auth-submit");
+  const toggle = document.getElementById("zn-auth-switch");
+  const message = document.getElementById("zn-auth-message");
+
+  let signup = false;
+
+  toggle.onclick = function() {
+    signup = !signup;
+    name.hidden = !signup;
+    name.required = signup;
+    title.textContent = signup ? "Create Account" : "Welcome to ZUNORO";
+    subtitle.textContent = signup ? "Join ZUNORO today" : "Login to continue";
+    submit.textContent = signup ? "Sign Up" : "Login";
+    toggle.textContent = signup ? "Already have an account? Login" : "Create New Account";
+    password.autocomplete = signup ? "new-password" : "current-password";
+    message.textContent = "";
+  };
+
+  form.onsubmit = function(e) {
+    e.preventDefault();
+
+    message.textContent =
+      "Authentication is not connected yet. Firebase integration is required.";
+
+  };
+})();
+</script>
+
+<!-- ZUNORO MEDIA UPLOAD SYSTEM -->
+
+<style>
+.zn-upload {
+  padding: 16px;
+  margin: 15px 0;
+  border-radius: 16px;
+  background: rgba(120,120,120,.12);
+  color: inherit;
+}
+.zn-upload input,
+.zn-upload textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin: 9px 0;
+  border-radius: 10px;
+  border: 1px solid #888;
+  background: transparent;
+  color: inherit;
+}
+.zn-preview {
+  width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+.zn-publish {
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 25px;
+  background: #6555ff;
+  color: white;
+  font-weight: bold;
+}
+.zn-feed-post {
+  padding: 14px;
+  margin: 14px 0;
+  border-radius: 14px;
+  background: rgba(120,120,120,.10);
+}
+</style>
+
+<section class="zn-upload" id="zn-create">
+  <h2>Create Post</h2>
+
+  <input
+    type="file"
+    id="zn-media"
+    accept="image/*,video/*"
+  >
+
+  <div id="zn-media-preview"></div>
+
+  <textarea
+    id="zn-caption"
+    placeholder="Write your caption..."
+    rows="3"
+  ></textarea>
+
+  <button class="zn-publish" id="zn-publish">
+    Publish Post
+  </button>
+</section>
+
+<section id="zn-new-feed">
+  <h2>Recent Posts</h2>
+</section>
+
+<script>
+(function() {
+  const fileInput = document.getElementById("zn-media");
+  const preview = document.getElementById("zn-media-preview");
+  const caption = document.getElementById("zn-caption");
+  const publish = document.getElementById("zn-publish");
+  const feed = document.getElementById("zn-new-feed");
+
+  let selectedFile = null;
+  let previewUrl = null;
+
+  fileInput.addEventListener("change", function() {
+    selectedFile = fileInput.files[0];
+    preview.innerHTML = "";
+
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    previewUrl = null;
+
+    if (!selectedFile) return;
+
+    const isImage = selectedFile.type.startsWith("image/");
+    const isVideo = selectedFile.type.startsWith("video/");
+
+    if (!isImage && !isVideo) {
+      alert("Please select an image or video.");
+      fileInput.value = "";
+      selectedFile = null;
+      return;
+    }
+
+    if (selectedFile.size > 100 * 1024 * 1024) {
+      alert("Maximum file size is 100 MB.");
+      fileInput.value = "";
+      selectedFile = null;
+      return;
+    }
+
+    previewUrl = URL.createObjectURL(selectedFile);
+
+    const media = document.createElement(isImage ? "img" : "video");
+    media.className = "zn-preview";
+    media.src = previewUrl;
+
+    if (isVideo) {
+      media.controls = true;
+      media.playsInline = true;
+    }
+
+    preview.appendChild(media);
+  });
+
+  publish.addEventListener("click", function() {
+    if (!selectedFile) {
+      alert("Please select a photo or video first.");
+      return;
+    }
+
+    const post = document.createElement("article");
+    post.className = "zn-feed-post";
+
+    const text = document.createElement("p");
+    text.textContent = caption.value.trim();
+
+    const media = document.createElement(
+      selectedFile.type.startsWith("image/") ? "img" : "video"
+    );
+
+    media.className = "zn-preview";
+    media.src = previewUrl;
+
+    if (selectedFile.type.startsWith("video/")) {
+      media.controls = true;
+      media.playsInline = true;
+    }
+
+    post.append(text, media);
+    feed.prepend(post);
+
+    previewUrl = null;
+    selectedFile = null;
+    fileInput.value = "";
+    caption.value = "";
+    preview.innerHTML = "";
+
+    alert("Post added to your local feed!");
+  });
+})();
+</script>
+
+<!-- ZUNORO VIDEO FEED -->
+
+<style>
+.zn-video-feed {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+.zn-video-card {
+  margin: 15px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #15151d;
+  color: white;
+}
+.zn-video-card video {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  background: black;
+}
+.zn-video-info {
+  padding: 12px;
+}
+.zn-video-card button {
+  padding: 9px 16px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 20px;
+  background: #6555ff;
+  color: white;
+}
+</style>
+
+<section class="zn-video-feed" id="zn-video-feed">
+  <h2>Video Feed</h2>
+</section>
+
+<script>
+(function() {
+  const feed = document.getElementById("zn-video-feed");
+
+  if (!feed || feed.dataset.ready) return;
+  feed.dataset.ready = "true";
+
+  window.znAddVideo = function(file, caption = "") {
+    if (!file || !file.type.startsWith("video/")) {
+      alert("Select a valid video.");
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+
+    const card = document.createElement("article");
+    card.className = "zn-video-card";
+
+    const video = document.createElement("video");
+    video.src = url;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+
+    const info = document.createElement("div");
+    info.className = "zn-video-info";
+
+    const title = document.createElement("p");
+    title.textContent = caption;
+
+    const fullscreen = document.createElement("button");
+    fullscreen.textContent = "⛶ Full Screen";
+
+    fullscreen.onclick = async function() {
+      try {
+        if (video.requestFullscreen) {
+          await video.requestFullscreen();
+        } else if (video.webkitEnterFullscreen) {
+          video.webkitEnterFullscreen();
+        }
+      } catch(error) {
+        alert("Full screen is not supported here.");
+      }
+    };
+
+    info.append(title, fullscreen);
+    card.append(video, info);
+    feed.prepend(card);
+  };
+
+})();
+</script>
+
+<!-- ZUNORO DRAFT SYSTEM -->
+
+<style>
+.zn-draft-btn {
+  padding: 11px 16px;
+  margin: 8px 4px;
+  border: none;
+  border-radius: 20px;
+  background: #6555ff;
+  color: white;
+}
+</style>
+
+<div id="zn-draft-controls">
+  <button class="zn-draft-btn" id="zn-save-draft">
+    Save Draft
+  </button>
+  <button class="zn-draft-btn" id="zn-load-draft">
+    Load Draft
+  </button>
+  <button class="zn-draft-btn" id="zn-delete-draft">
+    Delete Draft
+  </button>
+</div>
+
+<script>
+(function() {
+  const caption = document.getElementById("zn-caption");
+  const media = document.getElementById("zn-media");
+
+  if (!caption || !media) return;
+
+  document.getElementById("zn-save-draft").onclick = function() {
+    localStorage.setItem("zn-draft-caption", caption.value);
+    alert("Caption draft saved!");
+  };
+
+  document.getElementById("zn-load-draft").onclick = function() {
+    caption.value = localStorage.getItem("zn-draft-caption") || "";
+  };
+
+  document.getElementById("zn-delete-draft").onclick = function() {
+    localStorage.removeItem("zn-draft-caption");
+    caption.value = "";
+    alert("Draft deleted!");
+  };
+})();
+</script>
+<input
+  type="file"
+  id="zn-media"
+  accept="image/*,video/*"
+  multiple
+>
+
+<section id="zn-reels" style="display:none;background:#080808;color:white;min-height:100vh;padding:16px;font-family:Arial">
+  <h2>🎬 ZUNORO Reels</h2>
+
+  <input id="zn-reel-file" type="file"
+    accept="video/*" hidden>
+
+  <button onclick="document.getElementById('zn-reel-file').click()">
+    + Upload Reel
+  </button>
+
+  <div id="zn-reel-list"></div>
+</section>
+
+<script>
+const reelInput = document.getElementById("zn-reel-file");
+const reelList = document.getElementById("zn-reel-list");
+
+reelInput.addEventListener("change", function () {
+  [...this.files].forEach(file => {
+    if (!file.type.startsWith("video/")) return;
+
+    const url = URL.createObjectURL(file);
+    const card = document.createElement("div");
+
+    card.style.cssText =
+      "margin-top:20px;background:#171717;padding:12px;border-radius:14px";
+
+    const video = document.createElement("video");
+    video.src = url;
+    video.controls = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.style.cssText = "width:100%;border-radius:10px";
+
+    const name = document.createElement("p");
+    name.textContent = file.name;
+
+    card.append(video, name);
+    reelList.prepend(card);
+  });
+
+  this.value = "";
+});
+</script>
+
+<section id="zn-admin-stats" style="display:none;background:#101018;color:white;padding:20px;border-radius:15px;font-family:Arial">
+  <h2>👑 ZUNORO Admin</h2>
+  <p>Dashboard Overview</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="background:#222;padding:18px;border-radius:12px">
+      <h3 id="zn-users">0</h3>
+      <p>Total Users</p>
+    </div>
+    <div style="background:#222;padding:18px;border-radius:12px">
+      <h3 id="zn-posts">0</h3>
+      <p>Total Posts</p>
+    </div>
+    <div style="background:#222;padding:18px;border-radius:12px">
+      <h3 id="zn-reports">0</h3>
+      <p>Reports</p>
+    </div>
+    <div style="background:#222;padding:18px;border-radius:12px">
+      <h3 id="zn-active">0</h3>
+      <p>Active Users</p>
+    </div>
+  </div>
+  <p style="color:#aaa;font-size:12px">
+    Demo statistics — real data requires a secure backend.
+  </p>
+</section>
+
+<script>
+(function () {
+  const stats = {
+    users: 0,
+    posts: 0,
+    reports: 0,
+    active: 0
+  };
+
+  document.getElementById("zn-users").textContent = stats.users;
+  document.getElementById("zn-posts").textContent = stats.posts;
+  document.getElementById("zn-reports").textContent = stats.reports;
+  document.getElementById("zn-active").textContent = stats.active;
+})();
+</script>
+
+<script>
+document.addEventListener("click", function(e) {
+  const btn = e.target.closest(".zn-like-btn");
+  if (!btn) return;
+
+  const liked = btn.dataset.liked === "true";
+  const count = btn.querySelector(".zn-like-count");
+
+  if (!count) return;
+
+  let total = Number(count.textContent) || 0;
+
+  btn.dataset.liked = String(!liked);
+  count.textContent = liked ? Math.max(0, total - 1) : total + 1;
+  btn.style.color = liked ? "#888" : "#ff3158";
+});
+</script>
+<button class="zn-like-btn" data-liked="false">
+  ❤️ <span class="zn-like-count">0</span>
+</button>
+
+<style>
+.zn-comment-panel {
+  display:none;
+  padding:12px;
+  margin-top:10px;
+  background:#171923;
+  border-radius:12px;
+}
+.zn-comment-panel.active {display:block}
+.zn-comment-list {margin:10px 0}
+.zn-comment-item {
+  padding:9px;
+  margin:6px 0;
+  background:#252938;
+  border-radius:8px;
+  color:white;
+  overflow-wrap:anywhere;
+}
+.zn-comment-input {
+  width:100%;
+  padding:11px;
+  border-radius:8px;
+  border:1px solid #555;
+  background:#202431;
+  color:white;
+  box-sizing:border-box;
+}
+.zn-comment-send {
+  margin-top:8px;
+  padding:9px 16px;
+  border:0;
+  border-radius:8px;
+  background:#6558ed;
+  color:white;
+}
+</style>
+
+<script>
+(function(){
+  const comments = {};
+
+  document.querySelectorAll('.zn-comment-btn').forEach((btn,index)=>{
+    const post = btn.closest('.post') ||
+                 btn.closest('.post-card') ||
+                 btn.parentElement;
+
+    if(!post || post.dataset.znCommentReady) return;
+    post.dataset.znCommentReady = 'true';
+
+    const id = post.dataset.postId || 'post-'+index;
+    comments[id] = [];
+
+    const panel = document.createElement('div');
+    panel.className = 'zn-comment-panel';
+
+    panel.innerHTML = `
+      <div class="zn-comment-list"></div>
+      <input class="zn-comment-input"
+        maxlength="500"
+        placeholder="Write a comment...">
+      <button class="zn-comment-send">Post Comment</button>
+    `;
+
+    post.appendChild(panel);
+
+    btn.addEventListener('click',()=>{
+      panel.classList.toggle('active');
+    });
+
+    const input = panel.querySelector('input');
+    const list = panel.querySelector('.zn-comment-list');
+
+    panel.querySelector('button').addEventListener('click',()=>{
+      const value = input.value.trim();
+      if(!value) return;
+
+      comments[id].push(value);
+
+      const item = document.createElement('div');
+      item.className = 'zn-comment-item';
+      item.textContent = value;
+      list.appendChild(item);
+
+      input.value = '';
+
+      const count = btn.querySelector('.zn-comment-count');
+      if(count) count.textContent =
+        comments[id].length;
+    });
+  });
+})();
+</script>
+
+<style>
+.zn-create-post {
+  background:#171923;
+  padding:15px;
+  border-radius:14px;
+  margin:15px 0;
+  color:white;
+}
+.zn-create-post textarea {
+  width:100%;
+  min-height:85px;
+  padding:12px;
+  box-sizing:border-box;
+  background:#252938;
+  color:white;
+  border:1px solid #444;
+  border-radius:9px;
+}
+.zn-create-post input {
+  margin:10px 0;
+  max-width:100%;
+}
+.zn-preview img,
+.zn-preview video {
+  width:100%;
+  max-height:300px;
+  object-fit:contain;
+  margin-top:10px;
+  border-radius:10px;
+}
+.zn-publish {
+  background:#6558ed;
+  color:white;
+  border:0;
+  padding:11px 20px;
+  border-radius:9px;
+}
+.zn-new-post {
+  background:#202431;
+  padding:14px;
+  margin:12px 0;
+  border-radius:12px;
+  color:white;
+}
+</style>
+
+<div class="zn-create-post">
+  <h3>Create New Post</h3>
+  <textarea id="znPostText"
+    maxlength="2000"
+    placeholder="What's on your mind?"></textarea>
+
+  <input id="znPostFile"
+    type="file"
+    accept="image/*,video/*">
+
+  <div class="zn-preview" id="znPreview"></div>
+
+  <button class="zn-publish" id="znPublish">
+    Publish Post
+  </button>
+</div>
+
+<div id="znPostFeed"></div>
+
+<script>
+(function(){
+  const file = document.getElementById('znPostFile');
+  const preview = document.getElementById('znPreview');
+  const text = document.getElementById('znPostText');
+  const feed = document.getElementById('znPostFeed');
+
+  let selectedFile = null;
+  let previewURL = null;
+
+  file.addEventListener('change',()=>{
+    selectedFile = file.files[0] || null;
+    preview.innerHTML = '';
+
+    if(previewURL) URL.revokeObjectURL(previewURL);
+    previewURL = null;
+
+    if(!selectedFile) return;
+
+    if(!selectedFile.type.startsWith('image/') &&
+       !selectedFile.type.startsWith('video/')){
+      selectedFile = null;
+      file.value = '';
+      return;
+    }
+
+    previewURL = URL.createObjectURL(selectedFile);
+
+    const media = document.createElement(
+      selectedFile.type.startsWith('video/') ?
+      'video' : 'img'
+    );
+
+    media.src = previewURL;
+    if(media.tagName === 'VIDEO') {
+      media.controls = true;
+    }
+
+    preview.appendChild(media);
+  });
+
+  document.getElementById('znPublish')
+    .addEventListener('click',()=>{
+      const caption = text.value.trim();
+
+      if(!caption && !selectedFile){
+        alert('Write something or select media!');
+        return;
+      }
+
+      const post = document.createElement('div');
+      post.className = 'zn-new-post';
+
+      const heading = document.createElement('h4');
+      heading.textContent = 'New Post';
+
+      const description = document.createElement('p');
+      description.textContent = caption;
+
+      post.append(heading,description);
+
+      if(selectedFile && previewURL){
+        const media = document.createElement(
+          selectedFile.type.startsWith('video/') ?
+          'video' : 'img'
+        );
+        media.src = previewURL;
+        media.style.width = '100%';
+
+        if(media.tagName === 'VIDEO') {
+          media.controls = true;
+        }
+
+        post.appendChild(media);
+      }
+
+      feed.prepend(post);
+
+      text.value = '';
+      file.value = '';
+      preview.innerHTML = '';
+      selectedFile = null;
+      previewURL = null;
+
+      alert('Post published!');
+    });
+})();
+</script>
+
+<style>
+.zn-profile {
+  background:#171923;
+  color:white;
+  padding:18px;
+  border-radius:15px;
+  margin:15px 0;
+}
+.zn-avatar {
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#333;
+}
+.zn-profile input,
+.zn-profile textarea {
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:11px;
+  margin:9px 0;
+  border-radius:8px;
+  border:1px solid #444;
+  background:#252938;
+  color:white;
+}
+.zn-profile button {
+  padding:10px 15px;
+  border:0;
+  border-radius:8px;
+  background:#6558ed;
+  color:white;
+  margin:5px 3px;
+}
+#znEditForm {display:none}
+</style>
+
+<div class="zn-profile">
+  <h3>My Profile</h3>
+
+  <img id="znAvatar" class="zn-avatar"
+  src="https://placehold.co/100x100?text=User">
+
+  <h2 id="znName">New User</h2>
+  <p id="znUsername">@newuser</p>
+  <p id="znBio">Welcome to my profile!</p>
+
+  <p>Posts: <span id="znPosts">0</span></p>
+
+  <button id="znEditButton">Edit Profile</button>
+
+  <div id="znEditForm">
+    <input id="znNameInput" placeholder="Your name"
+    maxlength="40">
+
+    <input id="znUsernameInput" placeholder="Username"
+    maxlength="25">
+
+    <textarea id="znBioInput"
+    placeholder="Write your bio..."
+    maxlength="160"></textarea>
+
+    <input id="znAvatarInput" type="file"
+    accept="image/*">
+
+    <button id="znSaveProfile">Save Profile</button>
+    <button id="znCancelProfile">Cancel</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+
+  const fields = ['znName','znUsername','znBio'];
+
+  $('znEditButton').onclick = function(){
+    $('znNameInput').value = $('znName').textContent;
+    $('znUsernameInput').value =
+      $('znUsername').textContent.replace('@','');
+    $('znBioInput').value = $('znBio').textContent;
+    $('znEditForm').style.display = 'block';
+  };
+
+  $('znCancelProfile').onclick = function(){
+    $('znEditForm').style.display = 'none';
+  };
+
+  $('znSaveProfile').onclick = function(){
+    const name = $('znNameInput').value.trim();
+    const username = $('znUsernameInput').value.trim();
+    const bio = $('znBioInput').value.trim();
+
+    if(!name || !username){
+      alert('Name and username are required!');
+      return;
+    }
+
+    if(!/^[a-zA-Z0-9_]+$/.test(username)){
+      alert('Username can contain letters, numbers and _ only.');
+      return;
+    }
+
+    $('znName').textContent = name;
+    $('znUsername').textContent = '@'+username;
+    $('znBio').textContent = bio;
+
+    const avatar = $('znAvatarInput').files[0];
+
+    if(avatar){
+      const reader = new FileReader();
+      reader.onload = function(){
+        $('znAvatar').src = reader.result;
+      };
+      reader.readAsDataURL(avatar);
+    }
+
+    $('znEditForm').style.display = 'none';
+    alert('Profile updated!');
+  };
+})();
+</script>
+
+<style>
+.zn-social {
+  background:#171923;
+  padding:14px;
+  margin:12px 0;
+  border-radius:12px;
+  color:white;
+}
+.zn-social button {
+  padding:9px 15px;
+  margin:5px;
+  border:0;
+  border-radius:8px;
+  background:#34394b;
+  color:white;
+}
+.zn-social button.active {
+  background:#6558ed;
+}
+.zn-social .zn-like.active {
+  background:#d83e68;
+}
+</style>
+
+<div class="zn-social">
+  <h3>Social Activity</h3>
+
+  <button class="zn-like" id="znLike">
+    ♥ Like
+  </button>
+  <span>Likes: <b id="znLikeCount">0</b></span>
+
+  <hr>
+
+  <button id="znFollow">+ Follow</button>
+  <span>Following: <b id="znFollowing">0</b></span>
+
+  <p>Followers: <b id="znFollowers">0</b></p>
+</div>
+
+<script>
+(function(){
+  let liked = false;
+  let following = false;
+  let likes = 0;
+  let followers = 0;
+
+  const like = document.getElementById('znLike');
+  const follow = document.getElementById('znFollow');
+
+  like.onclick = function(){
+    liked = !liked;
+    likes = Math.max(0, likes + (liked ? 1 : -1));
+
+    like.classList.toggle('active',liked);
+    like.textContent = liked ? '♥ Liked' : '♥ Like';
+    document.getElementById('znLikeCount')
+      .textContent = likes;
+  };
+
+  follow.onclick = function(){
+    following = !following;
+    followers = Math.max(0,
+      followers + (following ? 1 : -1));
+
+    follow.classList.toggle('active',following);
+    follow.textContent = following ?
+      'Following' : '+ Follow';
+
+    document.getElementById('znFollowing')
+      .textContent = following ? 1 : 0;
+
+    document.getElementById('znFollowers')
+      .textContent = followers;
+  };
+})();
+</script>
+
+<style>
+.zn-notifications {
+  background:#171923;
+  color:white;
+  padding:15px;
+  margin:15px 0;
+  border-radius:14px;
+}
+.zn-notification {
+  padding:12px;
+  margin:8px 0;
+  border-radius:9px;
+  background:#252938;
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+.zn-unread {
+  border-left:4px solid #6558ed;
+}
+.zn-notifications button {
+  padding:8px 12px;
+  border:0;
+  border-radius:7px;
+  background:#6558ed;
+  color:white;
+}
+.zn-notification small {
+  color:#aaa;
+}
+</style>
+
+<div class="zn-notifications">
+  <h3>🔔 Notifications
+    <span id="znUnreadCount">0</span>
+  </h3>
+
+  <button id="znMarkAll">Mark All Read</button>
+  <button id="znClearAll">Clear All</button>
+
+  <div id="znNotificationList"></div>
+</div>
+
+<script>
+(function(){
+  const list = document.getElementById('znNotificationList');
+  const count = document.getElementById('znUnreadCount');
+
+  let notifications = [];
+
+  function addNotification(message){
+    notifications.unshift({
+      id:Date.now()+Math.random(),
+      message:message,
+      read:false,
+      time:new Date().toLocaleTimeString()
+    });
+    render();
+  }
+
+  function render(){
+    list.innerHTML = '';
+
+    notifications.forEach(n=>{
+      const item = document.createElement('div');
+      item.className = 'zn-notification' +
+        (n.read ? '' : ' zn-unread');
+
+      const info = document.createElement('div');
+      const message = document.createElement('div');
+      message.textContent = n.message;
+
+      const time = document.createElement('small');
+      time.textContent = n.time;
+
+      info.append(message,time);
+
+      const button = document.createElement('button');
+      button.textContent = n.read ? 'Read' : 'Open';
+
+      button.onclick = function(){
+        n.read = true;
+        render();
+      };
+
+      item.append(info,button);
+      list.appendChild(item);
+    });
+
+    count.textContent =
+      notifications.filter(n=>!n.read).length;
+  }
+
+  document.getElementById('znMarkAll').onclick = function(){
+    notifications.forEach(n=>n.read=true);
+    render();
+  };
+
+  document.getElementById('znClearAll').onclick = function(){
+    notifications = [];
+    render();
+  };
+
+  window.znAddNotification = addNotification;
+
+  addNotification('Welcome! Your activity center is ready.');
+  addNotification('Your notification system is active.');
+})();
+</script>
+znAddNotification("Someone liked your post!");
+
+<style>
+.zn-explore {
+  background:#171923;
+  color:white;
+  padding:15px;
+  border-radius:14px;
+  margin:15px 0;
+}
+.zn-explore input {
+  width:100%;
+  box-sizing:border-box;
+  padding:12px;
+  background:#252938;
+  color:white;
+  border:1px solid #444;
+  border-radius:9px;
+}
+.zn-user-result {
+  background:#252938;
+  padding:12px;
+  margin:9px 0;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.zn-user-result button {
+  background:#6558ed;
+  color:white;
+  padding:8px 12px;
+  border:0;
+  border-radius:7px;
+}
+.zn-explore button:disabled {
+  opacity:.6;
+}
+</style>
+
+<div class="zn-explore">
+  <h2>Explore 🔎</h2>
+
+  <input id="znSearchUser"
+    type="search"
+    placeholder="Search users...">
+
+  <div id="znExploreResults"></div>
+</div>
+
+<script>
+(function(){
+  const users = [
+    {name:'Vikas',username:'vikas',bio:'Welcome to my profile'},
+    {name:'Rahul',username:'rahul_01',bio:'Creator'},
+    {name:'Aman',username:'aman123',bio:'Photography lover'},
+    {name:'Priya',username:'priya',bio:'Digital creator'},
+    {name:'Arjun',username:'arjun_07',bio:'Explorer'},
+    {name:'Neha',username:'neha',bio:'Artist'},
+    {name:'Rohan',username:'rohan',bio:'Music lover'}
+  ];
+
+  const search = document.getElementById('znSearchUser');
+  const results = document.getElementById('znExploreResults');
+
+  function render(query=''){
+    results.innerHTML='';
+
+    const filtered = users.filter(user=>
+      (user.name+' '+user.username+' '+user.bio)
+      .toLowerCase().includes(query.toLowerCase())
+    );
+
+    if(!filtered.length){
+      results.textContent='No users found.';
+      return;
+    }
+
+    filtered.forEach(user=>{
+      const card=document.createElement('div');
+      card.className='zn-user-result';
+
+      const info=document.createElement('div');
+      const name=document.createElement('b');
+      name.textContent=user.name;
+
+      const username=document.createElement('div');
+      username.textContent='@'+user.username;
+
+      const bio=document.createElement('small');
+      bio.textContent=user.bio;
+
+      info.append(name,username,bio);
+
+      const button=document.createElement('button');
+      button.textContent='View Profile';
+
+      button.onclick=()=>{
+        alert(user.name+' profile selected!');
+      };
+
+      card.append(info,button);
+      results.appendChild(card);
+    });
+  }
+
+  search.addEventListener('input',()=>{
+    render(search.value.trim());
+  });
+
+  render();
+})();
+</script>
+
+<style>
+.zn-chat {
+  background:#171923;
+  color:white;
+  padding:15px;
+  border-radius:14px;
+  margin:15px 0;
+}
+.zn-chat-box {
+  height:280px;
+  overflow-y:auto;
+  background:#202431;
+  padding:12px;
+  border-radius:10px;
+  margin:12px 0;
+}
+.zn-message {
+  background:#34394b;
+  padding:10px;
+  border-radius:12px;
+  margin:8px 0;
+  max-width:80%;
+  overflow-wrap:anywhere;
+}
+.zn-message.mine {
+  background:#6558ed;
+  margin-left:auto;
+}
+.zn-chat-controls {
+  display:flex;
+  gap:7px;
+}
+.zn-chat-controls input {
+  flex:1;
+  min-width:0;
+  padding:11px;
+  border-radius:8px;
+  background:#252938;
+  color:white;
+  border:1px solid #555;
+}
+.zn-chat button {
+  background:#6558ed;
+  color:white;
+  border:0;
+  padding:10px 14px;
+  border-radius:8px;
+}
+</style>
+
+<div class="zn-chat">
+  <h3>💬 Messages</h3>
+  <p id="znChatStatus">Local Demo Chat</p>
+
+  <div class="zn-chat-box" id="znChatBox">
+    <div class="zn-message">
+      Welcome to your chat system!
+    </div>
+  </div>
+
+  <div class="zn-chat-controls">
+    <input id="znChatInput"
+      maxlength="1000"
+      placeholder="Write a message...">
+
+    <button id="znChatSend">Send</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const box=document.getElementById('znChatBox');
+  const input=document.getElementById('znChatInput');
+  const send=document.getElementById('znChatSend');
+
+  function sendMessage(){
+    const message=input.value.trim();
+    if(!message) return;
+
+    const item=document.createElement('div');
+    item.className='zn-message mine';
+    item.textContent=message;
+
+    box.appendChild(item);
+    input.value='';
+    box.scrollTop=box.scrollHeight;
+  }
+
+  send.addEventListener('click',sendMessage);
+
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      sendMessage();
+    }
+  });
+})();
+</script>
+
+<style>
+.zn-reels {
+  background:#171923;
+  color:white;
+  padding:15px;
+  border-radius:14px;
+  margin:15px 0;
+}
+.zn-reel-card {
+  background:#252938;
+  padding:12px;
+  margin:12px 0;
+  border-radius:12px;
+}
+.zn-reel-card video {
+  width:100%;
+  max-height:430px;
+  background:black;
+  border-radius:10px;
+}
+.zn-reel-card button,
+.zn-reels button {
+  background:#6558ed;
+  color:white;
+  border:0;
+  padding:9px 14px;
+  margin:5px 3px;
+  border-radius:8px;
+}
+.zn-reel-card p {
+  overflow-wrap:anywhere;
+}
+</style>
+
+<div class="zn-reels">
+  <h2>🎬 Reels</h2>
+  <p>Upload and watch short videos</p>
+
+  <input type="file" id="znReelFile"
+    accept="video/*">
+
+  <input type="text" id="znReelCaption"
+    placeholder="Write video caption..."
+    maxlength="200">
+
+  <button id="znUploadReel">Upload Reel</button>
+
+  <div id="znReelFeed"></div>
+</div>
+
+<script>
+(function(){
+  const file=document.getElementById('znReelFile');
+  const caption=document.getElementById('znReelCaption');
+  const feed=document.getElementById('znReelFeed');
+
+  const reels=[];
+
+  document.getElementById('znUploadReel')
+    .onclick=function(){
+
+    const video=file.files[0];
+
+    if(!video){
+      alert('Please select a video!');
+      return;
+    }
+
+    if(!video.type.startsWith('video/')){
+      alert('Please select a valid video!');
+      return;
+    }
+
+    const url=URL.createObjectURL(video);
+
+    const reel={
+      url:url,
+      caption:caption.value.trim(),
+      likes:0,
+      liked:false
+    };
+
+    reels.unshift(reel);
+    render();
+
+    file.value='';
+    caption.value='';
+  };
+
+  function render(){
+    feed.innerHTML='';
+
+    reels.forEach(reel=>{
+      const card=document.createElement('div');
+      card.className='zn-reel-card';
+
+      const video=document.createElement('video');
+      video.src=reel.url;
+      video.controls=true;
+      video.playsInline=true;
+      video.preload='metadata';
+
+      const description=document.createElement('p');
+      description.textContent=reel.caption || 'New Reel';
+
+      const like=document.createElement('button');
+      like.textContent=(reel.liked?'♥ Liked':'♡ Like')
+        +' ('+reel.likes+')';
+
+      like.onclick=function(){
+        reel.liked=!reel.liked;
+        reel.likes+=reel.liked?1:-1;
+        like.textContent=(reel.liked?'♥ Liked':'♡ Like')
+          +' ('+reel.likes+')';
+      };
+
+      card.append(video,description,like);
+      feed.appendChild(card);
+    });
+  }
+})();
+</script>
+
+<style>
+.zn-settings {
+  background:#171923;
+  color:white;
+  padding:16px;
+  border-radius:14px;
+  margin:15px 0;
+}
+.zn-setting-item {
+  background:#252938;
+  padding:12px;
+  margin:9px 0;
+  border-radius:9px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.zn-settings button {
+  background:#6558ed;
+  color:white;
+  padding:9px 14px;
+  border:0;
+  border-radius:8px;
+}
+.zn-settings select {
+  padding:8px;
+  border-radius:7px;
+}
+.zn-danger {
+  background:#a52c43 !important;
+}
+</style>
+
+<div class="zn-settings">
+  <h2>⚙️ Settings</h2>
+
+  <h3>Privacy</h3>
+
+  <div class="zn-setting-item">
+    <span>Private Profile</span>
+    <input type="checkbox" id="znPrivate">
+  </div>
+
+  <div class="zn-setting-item">
+    <span>Show Online Status</span>
+    <input type="checkbox" id="znOnline" checked>
+  </div>
+
+  <div class="zn-setting-item">
+    <span>Allow Notifications</span>
+    <input type="checkbox" id="znAllowNotifications" checked>
+  </div>
+
+  <h3>Appearance</h3>
+
+  <div class="zn-setting-item">
+    <span>Theme</span>
+    <select id="znTheme">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+    </select>
+  </div>
+
+  <h3>Account</h3>
+
+  <button id="znSaveSettings">Save Settings</button>
+  <button class="zn-danger" id="znLogout">
+    Demo Logout
+  </button>
+
+  <p id="znSettingsStatus"></p>
+</div>
+
+<script>
+(function(){
+  const ids=[
+    'znPrivate',
+    'znOnline',
+    'znAllowNotifications',
+    'znTheme'
+  ];
+
+  function loadSettings(){
+    try{
+      const saved=JSON.parse(
+        localStorage.getItem('znSettings')||'{}'
+      );
+
+      ids.forEach(id=>{
+        const el=document.getElementById(id);
+        if(saved[id]!==undefined){
+          if(el.type==='checkbox'){
+            el.checked=saved[id];
+          }else{
+            el.value=saved[id];
+          }
+        }
+      });
+    }catch(e){}
+  }
+
+  document.getElementById('znSaveSettings')
+    .onclick=function(){
+
+    const settings={};
+
+    ids.forEach(id=>{
+      const el=document.getElementById(id);
+      settings[id]=el.type==='checkbox'?
+        el.checked:el.value;
+    });
+
+    localStorage.setItem(
+      'znSettings',JSON.stringify(settings)
+    );
+
+    document.getElementById('znSettingsStatus')
+      .textContent='Settings saved successfully!';
+  };
+
+  document.getElementById('znTheme')
+    .addEventListener('change',function(){
+      document.body.style.background=
+        this.value==='light'?'#f2f2f2':'#101114';
+      document.body.style.color=
+        this.value==='light'?'#111':'white';
+    });
+
+  document.getElementById('znLogout')
+    .onclick=function(){
+      alert('Demo logout only. No account was logged out.');
+    };
+
+  loadSettings();
+})();
+</script>
+
+<style>
+.zn-guest {
+  background:#171923;
+  color:white;
+  padding:20px;
+  margin:15px 0;
+  border-radius:14px;
+  text-align:center;
+}
+.zn-guest button {
+  background:#6558ed;
+  color:white;
+  border:0;
+  padding:12px 22px;
+  border-radius:9px;
+  margin:8px;
+}
+.zn-guest-status {
+  color:#9e9eaa;
+}
+</style>
+
+<div class="zn-guest">
+  <h2>Welcome to Zuno</h2>
+  <p>Explore Zuno without creating an account.</p>
+
+  <button id="znGuestLogin">Continue as Guest</button>
+
+  <p class="zn-guest-status" id="znGuestStatus">
+    You are not logged in.
+  </p>
+</div>
+
+<script>
+(function(){
+  const button=document.getElementById('znGuestLogin');
+  const status=document.getElementById('znGuestStatus');
+
+  button.onclick=function(){
+    const guest={
+      id:'guest_'+Date.now(),
+      name:'Guest User',
+      username:'guest',
+      type:'guest'
+    };
+
+    sessionStorage.setItem(
+      'zuno_guest',
+      JSON.stringify(guest)
+    );
+
+    status.textContent='Welcome, Guest User!';
+    button.textContent='Guest Mode Active';
+    button.disabled=true;
+
+    window.dispatchEvent(
+      new CustomEvent('zunoGuestLogin',{
+        detail:guest
+      })
+    );
+  };
+})();
+</script>
+
+{
+  "name": "ZUNORO",
+  "short_name": "ZUNORO",
+  "start_url": "./Home.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101114",
+  "theme_color": "#101114",
+  "description": "Welcome to ZUNORO",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
+{
+  "name": "ZUNORO",
+  "short_name": "ZUNORO",
+  "start_url": "./Home.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101114",
+  "theme_color": "#101114",
+  "description": "Welcome to ZUNORO",
+  "icons": [
+    {
+      "src": "./zunoro-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#101114">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(error => console.log('SW Error:', error));
+  });
+}
+</script>
+
+const CACHE_NAME = 'zunoro-v1';
+
+const APP_FILES = [
+  './Home.html',
+  './manifest.json',
+  './zunoro-icon.png'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_FILES))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request);
+    })
+  );
+});
+              
